@@ -1,0 +1,1710 @@
+/* ==================== CSS变量定义 ==================== */
+:root {
+    /* 颜色变量 */
+    --primary: #f32640;
+    --neutral-900: #171717;
+    --neutral-700: #3d3d3d;
+    --neutral-600: #525252;
+    --neutral-500: #6e6e6e;
+    --neutral-400: #b8b8b8;
+    --neutral-300: #d4d4d4;
+    --neutral-200: #e5e5e5;
+    --neutral-100: #f5f5f5;
+    --neutral-50: #fafafa;
+    --blue-500: #335cff;
+    
+    /* 背景色 */
+    --background-shellBG: #f5f5f5;
+    --background-boxBg: #ffffff;
+    --background-01: #f5f5f5;
+    --background-base: #ffffff;
+    --background-hoverBG: #fafafa;
+    
+    /* 字体颜色 */
+    --font-01: #171717;
+    --font-03: #6e6e6e;
+    --font-helper: #6e6e6e;
+    --font-diabled: #b8b8b8;
+    
+    /* 边框颜色 */
+    --border-color-border: #e5e5e5;
+    
+    /* 圆角 */
+    --border-radius-sm: 4px;
+    --border-radius-m: 8px;
+    --border-radius-l: 12px;
+    
+    /* 其他 */
+    --accent: 244 244 245;
+    --accent-foreground: 24 24 27;
+    --input: 228 228 231;
+    --ring: 226 226 226;
+    --module-shadow: rgba(107, 111, 122, 0.06);
+}
+
+/* ==================== 基础样式重置 ==================== */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0; 
+    padding: 0;
+    border: 0 solid var(--border-color-border);
+}
+
+html {
+    height: 100%; 
+    font-size: 14px;
+    line-height: 1.5; 
+    -webkit-text-size-adjust: 100%; 
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+body {
+    height: 100%; 
+    margin: 0;
+    background-color: var(--background-shellBG);
+    color: var(--font-01);
+    font-size: 14px;
+    line-height: 1.5;
+    overflow: hidden;
+}
+
+/* ==================== 通用工具类 ==================== */
+button { 
+    font-family: inherit; 
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    color: inherit; 
+}
+
+svg {
+    display: block;
+    vertical-align: middle;
+    font-size: 16px;
+}
+
+input {
+    font-family: inherit;
+    color: inherit;
+} 
+
+/* ==================== 布局工具类 ==================== */
+.relative { position: relative; }
+.absolute { position: absolute; }
+.fixed { position: fixed; }
+.flex { display: flex; }
+.inline-flex { display: inline-flex; }
+.block { display: block; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.items-stretch { align-items: stretch; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.flex-grow { flex-grow: 1; }
+.flex-none { flex: none; }
+.shrink-0 { flex-shrink: 0; }
+
+/* 尺寸 */
+.h-full { height: 100%; }
+.h-1\/2 { height: 50%; }
+.h-4 { height: 1rem; }
+.h-5 { height: 1.25rem; }
+.h-2\.5 { height: 0.625rem; }
+.h-\[22px\] { height: 22px; }
+.h-\[30px\] { height: 30px; }
+.h-\[32px\] { height: 32px; }
+.w-full { width: 100%; }
+.w-3\/4 { width: 75%; }
+.w-4 { width: 1rem; }
+.w-6 { width: 1.5rem; }
+.w-9 { width: 2.25rem; }
+.w-2\.5 { width: 0.625rem; }
+.w-\[400px\] { width: 400px; }
+.w-\[600px\] { width: 600px; }
+
+/* 定位 */
+.inset-y-0 { top: 0; bottom: 0; }
+.right-0 { right: 0; }
+.top-\[1px\] { top: 1px; }
+.top-\[24px\] { top: 24px; }
+.bottom-\[1px\] { bottom: 1px; }
+.right-\[8px\] { right: 8px; }
+.right-\[32px\] { right: 32px; }
+.z-50 { z-index: 50; }
+
+/* 间距 */
+.m-0 { margin: 0; }
+.mr { margin-right: 8px; }
+.mr-\[8px\] { margin-right: 8px; }
+.my { margin-top: 8px; margin-bottom: 8px; }
+.mt { margin-top: 8px; }
+.mt-lg { margin-top: 16px; }
+.mb-\[8px\] { margin-bottom: 8px; }
+.my-lg { margin-top: 16px; margin-bottom: 16px; }
+.p-0 { padding: 0; }
+.px { padding-left: 8px; padding-right: 8px; }
+.pb { padding-bottom: 8px; }
+.p-lg { padding: 16px; }
+.pb-sm { padding-bottom: 4px; }
+.px-sm { padding-left: 4px; padding-right: 4px; }
+.px-\[8px\] { padding-left: 8px; padding-right: 8px; }
+.px-\[12px\] { padding-left: 12px; padding-right: 12px; }
+.px-\[24px\] { padding-left: 24px; padding-right: 24px; }
+.py-\[6px\] { padding-top: 6px; padding-bottom: 6px; }
+.py-\[8px\] { padding-top: 8px; padding-bottom: 8px; }
+.py-\[16px\] { padding-top: 16px; padding-bottom: 16px; }
+.p-\[12px\] { padding: 12px; }
+.pt-\[12px\] { padding-top: 12px; }
+.pr-\[26px\] { padding-right: 26px; }
+.gap-1 { gap: 0.25rem; }
+.gap-2 { gap: 0.5rem; }
+.gap-4 { gap: 1rem; }
+.gap-sm { gap: 4px; }
+
+/* 边框 */
+.border { border-width: 1px; }
+.border-b { border-bottom-width: 1px; }
+.border-l { border-left-width: 1px; }
+.border-2 { border-width: 2px; }
+.border-border { border-color: var(--border-color-border); }
+.border-input { border-color: rgb(var(--input)); }
+.border-transparent { border-color: transparent; }
+
+/* 圆角 */
+.rounded { border-radius: var(--border-radius-m); }
+.rounded-sm { border-radius: var(--border-radius-sm); }
+.rounded-md { border-radius: var(--border-radius-m); }
+.rounded-lg { border-radius: var(--border-radius-l); }
+.rounded-full { border-radius: 9999px; }
+.rounded-none { border-radius: 0; }
+.rounded-r-full { border-top-right-radius: 9999px; border-bottom-right-radius: 9999px; }
+
+/* 背景色 */
+.bg-background { background-color: var(--background-boxBg); }
+.bg-box { background-color: var(--background-boxBg); }
+.bg-base { background-color: var(--background-base); }
+.bg-01 { background-color: var(--background-01); }
+
+/* 文字颜色 */
+.text-foreground { color: var(--font-01); }
+.text-helper { color: var(--font-helper); }
+.text-\[\#C4C4C4\] { color: #c4c4c4; }
+
+/* 文字样式 */
+.text-sm { font-size: 12px; }
+.text-lg { font-size: 16px; }
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.text-center { text-align: center; }
+.leading-none { line-height: 1; }
+.whitespace-nowrap { white-space: nowrap; }
+
+/* 其他 */
+.overflow-hidden { overflow: hidden; }
+.cursor-pointer { cursor: pointer; }
+.pointer-events-none { pointer-events: none; }
+.outline-none { outline: 2px solid transparent; outline-offset: 2px; }
+.opacity-0 { opacity: 0; }
+.opacity-70 { opacity: 0.7; }
+.box-content { box-sizing: content-box; }
+.sr-only { 
+    position: absolute; 
+    width: 1px; 
+    height: 1px; 
+    padding: 0; 
+    margin: -1px; 
+    overflow: hidden; 
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap; 
+    border-width: 0;
+} 
+
+/* 阴影 */
+.shadow-sm {
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+}
+.shadow-lg {
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+/* 过渡动画 */
+.transition {
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.15s;
+}
+.transition-colors {
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.15s;
+}
+.transition-opacity {
+    transition-property: opacity;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.15s;
+}
+.transition-transform {
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.15s;
+}
+/* ==================== 响应式 ==================== */
+@media (min-width: 640px) {
+    .sm\:text-left { text-align: left; }
+}
+
+/* ==================== 数据状态样式 ==================== */
+.data-\[state\=open\]\:duration-500[data-state="open"] {
+    transition-duration: 0.5s;
+    animation-duration: 0.5s;
+}
+
+.data-\[state\=open\]\:animate-in[data-state="open"] {
+    animation-name: enter;
+    animation-duration: 0.15s;
+}
+
+.data-\[state\=checked\]\:bg-primary[data-state="checked"] {
+    background-color: var(--primary);
+}
+
+.data-\[state\=unchecked\]\:bg-input[data-state="unchecked"] {
+    background-color: rgb(var(--input));
+}
+
+.data-\[state\=checked\]\:translate-x-4[data-state="checked"] {
+    transform: translateX(1rem);
+}
+
+.data-\[state\=unchecked\]\:translate-x-0[data-state="unchecked"] {
+    transform: translateX(0);
+}
+
+/* ==================== 悬停状态 ==================== */
+.hover\:opacity-100:hover { opacity: 1; }
+.hover\:bg-accent:hover { background-color: rgb(var(--accent)); }
+.hover\:text-accent-foreground:hover { color: rgb(var(--accent-foreground)); }
+.hover\:bg-hover:hover { background-color: var(--background-hoverBG); }
+.hover\:box-border:hover { box-sizing: border-box; }
+.hover\:flex:hover { display: flex; }
+.hover\:h-\[30px\]:hover { height: 30px; }
+.hover\:items-center:hover { align-items: center; }
+.hover\:rounded:hover { border-radius: var(--border-radius-m); }
+.hover\:border:hover { border-width: 1px; }
+.hover\:px-\[8px\]:hover { padding-left: 8px; padding-right: 8px; }
+.hover\:text-sm:hover { font-size: 12px; }
+.hover\:leading-\[24px\]:hover { line-height: 24px; }
+
+/* ==================== 禁用状态 ==================== */
+.disabled\:cursor-not-allowed:disabled { cursor: not-allowed; }
+.disabled\:border-border:disabled { border-color: var(--border-color-border); }
+.disabled\:text-disabled:disabled { color: var(--font-diabled); }
+.disabled\:opacity-30:disabled { opacity: 0.3; }
+:disabled { cursor: default; }
+
+/* ==================== 组件特定样式 ==================== */
+/* 表单容器 */
+.css-g8l4pe { 
+    height: calc(100% - 73px); 
+    overflow: auto;
+} 
+
+/* 配置布局 */
+.css-peehrz { 
+    position: relative; 
+    height: 100%; 
+    padding: 16px; 
+    overflow-y: auto;
+} 
+
+.css-peehrz .configer-layout_body {
+    position: relative; 
+    height: 100%; 
+    overflow: visible;
+} 
+
+/* 图标容器 */
+.css-1cgkfhz { 
+    display: inline-flex; 
+    width: 24px; 
+    height: 24px; 
+    border-radius: 6px; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 13px; 
+    color: rgb(255, 0, 0); 
+    background: rgba(255, 0, 0, 0.125);
+} 
+
+/* 文本样式 */
+:where(.css-la0689).ant-typography { 
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 14px; 
+    box-sizing: border-box;
+    color: rgba(0, 0, 0, 0.88);
+    word-break: break-word; 
+    line-height: 1.5714285714285714;
+} 
+
+:where(.css-la0689).ant-typography-ellipsis-single-line { 
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis;
+} 
+
+div:where(.css-la0689).ant-typography { 
+    margin-bottom: 1em;
+} 
+
+/* 手风琴组件 */
+.css-ovyzop .accord_item {
+    border-radius: 16px; 
+    border: 1px solid var(--border-color-border); 
+    margin-bottom: 16px;
+} 
+
+.css-ovyzop .accord_item_header {
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    border-bottom: 1px solid var(--border-color-border); 
+    height: 42px; 
+    padding: 0 16px;
+    font-size: 14px; 
+    font-weight: 600;
+    cursor: pointer;
+} 
+
+.css-ovyzop .accord_item_body {
+    padding: 16px; 
+    transition: all 200ms;
+    overflow: visible;
+}
+
+.css-ovyzop .accord_item_collapse-btn {
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    cursor: pointer;
+    transition: transform 0.2s;
+} 
+
+/* 拖拽容器 */
+[data-rbd-droppable-context-id="1"] { 
+    overflow-anchor: none;
+} 
+
+/* SVG 修饰符 */
+.\[\&_svg\]\:pointer-events-none svg {
+    pointer-events: none;
+} 
+
+.\[\&_svg\]\:size-\[16px\] svg {
+    width: 16px; 
+    height: 16px;
+} 
+
+.\[\&_svg\]\:shrink-0 svg {
+    flex-shrink: 0;
+} 
+
+/* 开关按钮圆点样式 */
+.ring-0 {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000;
+}
+
+/* ==================== 内联样式 (特定元素样式) ==================== */
+/* 侧边栏对话框 */
+#radix-«r26».style-Vt7LV {
+    min-width: 300px;
+    width: auto;
+    max-width: 800px;
+    pointer-events: auto;
+}
+
+/* 标题文本 */
+#style-G2Av4.style-G2Av4 {
+    cursor: pointer;
+    margin: 0;
+    max-width: 200px;
+}
+
+/* 小字体区域 */
+#style-V8SCb.style-V8SCb {
+    font-size: 12px;
+}
+
+/* 隐藏的复选框 */
+#style-84UZh.style-84UZh,
+#style-PKJeJ.style-PKJeJ,
+#style-HJYwp.style-HJYwp {
+    transform: translateX(-100%);
+    position: absolute;
+    pointer-events: none;
+    opacity: 0;
+    margin: 0;
+    width: 31.5px;
+    height: 17.5px;
+}
+
+/* 帮助文本 */
+#style-7Js64.style-7Js64 {
+    margin-top: 4px;
+    color: var(--font-03);
+    font-weight: 400;
+}
+
+/* 内联输入框 */
+#style-kYU3Y.style-kYU3Y {
+    display: inline-block;
+    width: 80px;
+    margin: 0 4px;
+}
+
+/* 数字输入框 */
+#style-6Vg1H.style-6Vg1H {
+    appearance: textfield;
+}
+
+/* 拖拽容器 */
+#style-W9gwk.style-W9gwk {
+    position: relative;
+}
+
+/* 条件分支卡片 */
+#style-i12qP.style-i12qP {
+    user-select: none;
+}
+
+/* 兜底判断标签 */
+#style-RdhNJ.style-RdhNJ {
+    font-weight: 500;
+}
+
+/* ==================== 行为识别模块样式 ==================== */
+/* 行为识别容器 */
+.behavior-config-container {
+    overflow: visible;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+/* 行为识别主容器 */
+.behavior-summary {
+    overflow: visible;
+    position: relative;
+}
+
+/* 功能说明文案 */
+.behavior-description {
+    line-height: 1.6;
+    color: var(--font-03);
+}
+
+/* 标签包装器 - 自动扩展 */
+.behavior-tags-wrapper {
+    margin-bottom: 8px;
+}
+
+/* 标签显示区域 */
+.behavior-tags-display {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    min-height: 24px;
+}
+
+.behavior-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 8px;
+    background-color: var(--background-01);
+    border: 1px solid var(--border-color-border);
+    border-radius: 4px;
+    font-size: 12px;
+    color: var(--font-01);
+    flex-shrink: 0;
+    box-sizing: border-box;
+}
+
+.behavior-tag-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+}
+
+.behavior-tag-icon svg {
+    color: inherit;
+}
+
+.behavior-tag-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    flex: 1;
+}
+
+.behavior-tag-remove {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.15s;
+}
+
+.behavior-tag-remove:hover {
+    opacity: 1;
+}
+
+.behavior-tag-more {
+    color: var(--font-03);
+    font-weight: 500;
+    cursor: pointer;
+}
+
+/* 下拉菜单样式 */
+.behavior-dropdown {
+    position: relative;
+    margin-top: 8px;
+    border-radius: 8px;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    z-index: 10;
+}
+
+.behavior-dropdown.show {
+    max-height: 300px;
+    opacity: 1;
+}
+
+.behavior-dropdown-content {
+    background-color: var(--background-base);
+    border: 1px solid var(--border-color-border);
+    border-radius: 8px;
+    padding: 8px;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.behavior-dropdown-tip {
+    padding: 8px 12px;
+    margin-bottom: 4px;
+    line-height: 1.6;
+    color: var(--font-03);
+}
+
+.behavior-options-list {
+    max-height: 250px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* 行为选项项 */
+.behavior-option-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s;
+    background-color: var(--background-base);
+}
+
+.behavior-option-item:hover {
+    background-color: var(--background-hoverBG);
+}
+
+.behavior-checkbox {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.behavior-checkbox:checked + .behavior-option-label {
+    font-weight: 500;
+    color: var(--primary);
+}
+
+.behavior-checkbox:checked ~ .behavior-checkmark {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.behavior-option-label {
+    flex: 1;
+    font-size: 14px;
+    color: var(--font-01);
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.behavior-icon {
+    flex-shrink: 0;
+}
+
+.behavior-checkmark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--border-color-border);
+    border-radius: 4px;
+    background-color: transparent;
+    transition: all 0.15s;
+    flex-shrink: 0;
+}
+
+.behavior-checkmark svg {
+    display: none;
+    color: white;
+    width: 12px;
+    height: 12px;
+}
+
+.behavior-checkbox:checked ~ .behavior-checkmark svg {
+    display: block;
+}
+
+.hover\:opacity-90:hover {
+    opacity: 0.9;
+}
+
+.text-white {
+    color: white;
+}
+
+.bg-primary {
+    background-color: var(--primary);
+}
+
+.mb {
+    margin-bottom: 8px;
+}
+
+/* ==================== 关键词识别模块样式 ==================== */
+
+/* 条件分支 */
+.condition-branch {
+    background: var(--background-01);
+    border: 1px solid var(--border-color-border);
+    border-radius: var(--border-radius-l);
+    padding: 12px;
+    margin-bottom: 8px;
+}
+
+.condition-branch_box {
+    margin-bottom: 8px;
+}
+
+.condition-branch_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 30px;
+}
+
+.branch-title-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.branch-icon {
+    color: var(--font-01);
+}
+
+.branch-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--font-01);
+}
+
+.edit-icon {
+    cursor: pointer;
+    color: var(--font-01);
+}
+
+.edit-icon:hover {
+    opacity: 0.7;
+}
+
+/* 分支头部操作按钮组 */
+.branch-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* 删除分支按钮 */
+.branch-delete-btn {
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    border-radius: var(--border-radius-s);
+    color: var(--font-02);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.branch-delete-btn:hover {
+    background: rgba(243, 38, 64, 0.1);
+    color: var(--primary);
+}
+
+.branch-delete-btn:active {
+    transform: scale(0.95);
+}
+
+.branch-delete-btn svg {
+    color: currentColor;
+}
+
+.branch-collapse-btn {
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    transition: transform 0.2s;
+}
+
+.branch-collapse-btn:hover {
+    opacity: 0.7;
+}
+
+/* 条件分支主体 */
+.condition-branch_body {
+    background: var(--background-base);
+    border-radius: 12px;
+    padding: 16px;
+}
+
+/* 条件组 */
+.condition-group {
+    margin-bottom: 0;
+}
+
+.condition-box {
+    background: var(--background-base);
+    border: 1px solid var(--border-color-border);
+    border-radius: var(--border-radius-l);
+    padding: 16px;
+}
+
+/* 条件行 */
+.condition-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.condition-row:last-of-type {
+    margin-bottom: 8px;
+}
+
+/* 下拉选择器 */
+.condition-select {
+    width: 100px;
+    height: 36px;
+    padding: 0 8px;
+    border: 1px solid var(--border-color-border);
+    border-radius: var(--border-radius-m);
+    background: var(--background-base);
+    font-size: 14px;
+    color: var(--font-01);
+    cursor: pointer;
+    flex-shrink: 0;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.condition-select:hover {
+    border-color: var(--neutral-400);
+}
+
+.condition-select:focus {
+    border-color: var(--primary);
+}
+
+/* 关键词输入框 */
+.keywords-input {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
+    min-height: 36px;
+    padding: 4px 8px;
+    border: 1px solid var(--border-color-border);
+    border-radius: var(--border-radius-m);
+    background: var(--background-base);
+    transition: border-color 0.2s;
+}
+
+.keywords-input:hover {
+    border-color: var(--neutral-400);
+}
+
+.keywords-input:focus-within {
+    border-color: var(--primary);
+}
+
+/* 关键词标签 */
+.keyword-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    height: 24px;
+    padding: 0 8px 0 8px;
+    background: rgba(0, 0, 0, 0.06);
+    border-radius: 4px;
+    font-size: 14px;
+    color: var(--font-01);
+}
+
+.keyword-tag span {
+    line-height: 24px;
+}
+
+.remove-tag {
+    background: none;
+    border: none;
+    color: rgba(0, 0, 0, 0.45);
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0;
+    width: 14px;
+    height: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+}
+
+.remove-tag:hover {
+    color: var(--font-01);
+}
+
+.keyword-input {
+    flex: 1;
+    min-width: 40px;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 14px;
+    color: var(--font-01);
+    height: 24px;
+}
+
+/* 删除按钮 */
+.delete-btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border-color-border);
+    border-radius: var(--border-radius-m);
+    background: var(--background-base);
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.2s;
+}
+
+.delete-btn:hover {
+    background: var(--background-01);
+    border-color: var(--neutral-400);
+}
+
+.delete-btn svg {
+    color: var(--font-01);
+}
+
+/* 添加条件按钮(并且) */
+/* 并且按钮 - 次级样式 */
+.add-condition-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border: none;
+    background: transparent;
+    color: var(--font-02);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: var(--border-radius-s);
+}
+
+.add-condition-btn:hover {
+    background: var(--background-01);
+    color: var(--font-01);
+}
+
+.add-condition-btn:active {
+    transform: scale(0.98);
+}
+
+.add-condition-btn svg {
+    width: 12px;
+    height: 12px;
+    color: currentColor;
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.add-condition-btn:hover svg {
+    transform: rotate(90deg);
+}
+
+/* 分隔符(或者) */
+.divider {
+    text-align: left;
+    color: var(--font-03);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 0;
+    margin: 16px 0 8px 0;
+}
+
+/* 添加组按钮(或者) */
+/* .add-group-btn 样式已移至统一的添加按钮样式中 */
+.add-group-btn {
+    margin-top: 16px;
+}
+
+/* 新增分支区域 */
+.add-branch-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 16px 0;
+}
+
+.add-branch-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border: 1px solid var(--border-color-border);
+    border-radius: var(--border-radius-m);
+    background: var(--background-base);
+    color: var(--font-01);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    transition: all 0.2s;
+}
+
+.add-branch-btn:hover {
+    background: var(--background-01);
+}
+
+.add-branch-btn svg {
+    color: var(--font-01);
+}
+
+/* 默认分支 */
+.default-branch {
+    background: var(--background-01);
+    border: 1px solid var(--border-color-border);
+    border-radius: var(--border-radius-l);
+    padding: 12px;
+    margin-bottom: 8px;
+}
+
+.default-branch_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.default-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 22px;
+    padding: 0 8px;
+    background: var(--background-base);
+    border: 1px solid var(--border-color-border);
+    border-radius: var(--border-radius-sm);
+    font-size: 12px;
+    color: var(--font-01);
+}
+
+.default-branch_body {
+    margin-top: 8px;
+}
+
+.help-text {
+    background: var(--background-base);
+    padding: 16px;
+    border-radius: var(--border-radius-l);
+    font-size: 14px;
+    color: var(--font-helper);
+    line-height: 1.5;
+}
+
+/* ==================== 顾客消息识别模块样式 ==================== */
+
+/* 消息分支容器 */
+.message-recognition-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* 消息分支 */
+.message-branch {
+    background: var(--background-01);
+    border: 1px solid var(--border-color-border);
+    border-radius: var(--border-radius-l);
+    padding: 12px;
+}
+
+.message-branch_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 30px;
+    margin-bottom: 12px;
+}
+
+.message-branch_body {
+    background: var(--background-base);
+    border-radius: var(--border-radius-l);
+    padding: 16px;
+}
+
+/* 识别区块（意图/关键词） */
+.intent-section,
+.keyword-section {
+    background: var(--background-01);
+    border: 1px solid var(--border-color-border);
+    border-radius: var(--border-radius-m);
+    padding: 12px;
+    transition: all 0.3s ease;
+}
+
+.intent-section + .or-divider {
+    margin: 16px 0;
+}
+
+.or-divider + .keyword-section {
+    margin-top: 0;
+}
+
+/* 区块标题栏 */
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color-border);
+}
+
+.section-title-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.section-icon {
+    color: var(--font-01);
+    flex-shrink: 0;
+}
+
+.section-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--font-01);
+}
+
+.section-count {
+    font-size: 12px;
+    color: var(--font-03);
+    font-weight: 400;
+}
+
+.section-delete-btn {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s;
+    color: var(--font-03);
+}
+
+.section-delete-btn:hover {
+    background: var(--background-hoverBG);
+    color: var(--primary);
+}
+
+/* 区块内容 */
+.section-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* 意图识别区块的内容：移除gap，实现无缝连接 */
+.intent-section .section-content {
+    gap: 0;
+}
+
+/* "或"分隔符 - 横线文字式 */
+.or-divider {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    margin: 24px 0;
+}
+
+.or-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border-color-border);
+}
+
+.or-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.or-text {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--font-03);
+    white-space: nowrap;
+}
+
+/* ==================== 意图名称和用户问法 - 融合式布局 ==================== */
+
+/* 意图名称容器 - 默认上半部分（有底边框） */
+.intent-name-field {
+    display: flex;
+    align-items: stretch;
+    margin-bottom: 0;
+    background: var(--background-base);
+    border: 1px solid var(--border-color-border);
+    border-radius: var(--border-radius-m);
+    overflow: hidden;
+    transition: border-color 0.2s;
+}
+
+/* 意图名称标签 */
+.intent-name-field .field-label {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 10px 12px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--font-02);
+    background: rgba(0, 0, 0, 0.02);
+    border-right: 1px solid var(--border-color-border);
+    white-space: nowrap;
+}
+
+/* 意图名称输入包装器 */
+.intent-name-input-wrapper {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    gap: 8px;
+    padding: 10px 12px;
+    background: transparent;
+    border: none;
+}
+
+/* Hover 状态 */
+.intent-name-field:hover {
+    border-color: var(--neutral-400);
+}
+
+/* Focus 状态 */
+.intent-name-field:focus-within {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(243, 38, 64, 0.1);
+}
+
+/* 当后面有用户问法区域时，调整为上半部分样式 */
+.intent-name-field:has(+ .user-questions-field) {
+    border-bottom: 0;
+    border-radius: var(--border-radius-m) var(--border-radius-m) 0 0;
+}
+
+/* 当后面有用户问法且聚焦时，不显示阴影（由下方统一显示） */
+.intent-name-field:focus-within:has(+ .user-questions-field) {
+    box-shadow: none;
+}
+
+.field-label {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--font-02);
+    margin-bottom: 4px;
+}
+
+.field-optional {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--font-03);
+    margin-left: 4px;
+}
+
+/* 图标样式 */
+.field-icon {
+    flex-shrink: 0;
+    color: var(--font-02);
+}
+
+/* 意图名称输入框 */
+.intent-name-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 14px;
+    color: var(--font-01);
+    padding: 0;
+}
+
+.intent-name-input::placeholder {
+    color: var(--font-helper);
+}
+
+/* 用户问法区域 - 下半部分 */
+.user-questions-field {
+    margin: 0;
+    padding: 0 12px 12px 12px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.01) 0%, rgba(0, 0, 0, 0.02) 100%);
+    border: 1px solid var(--border-color-border);
+    border-top: 0;
+    border-radius: 0 0 var(--border-radius-m) var(--border-radius-m);
+}
+
+/* 用户问法区域内的标签 */
+.user-questions-field .field-label {
+    margin: 0 0 10px 0;
+    padding-top: 12px;
+}
+
+.user-questions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 0 0 8px 0;
+}
+
+/* 当用户问法列表不为空时，调整样式（上内边距为0） */
+.user-questions-field:has(.user-questions-list:not(:empty)) {
+    padding: 0 12px 12px 12px;
+}
+
+/* 问法项 - 白色背景在浅灰区域上更突出 */
+.question-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff;
+    border: 1px solid var(--border-color-border);
+    border-radius: var(--border-radius-m);
+    padding: 8px 12px;
+    transition: all 0.2s;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.question-item:hover {
+    border-color: var(--neutral-400);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.question-icon {
+    flex-shrink: 0;
+    color: var(--font-02);
+}
+
+.question-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 14px;
+    color: var(--font-01);
+    padding: 0;
+}
+
+.question-input::placeholder {
+    color: var(--font-helper);
+}
+
+.question-input:focus {
+    outline: none;
+}
+
+.question-delete-btn {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s;
+    color: var(--font-03);
+    opacity: 0;
+}
+
+.question-item:hover .question-delete-btn {
+    opacity: 1;
+}
+
+.question-delete-btn:hover {
+    background: rgba(243, 38, 64, 0.1);
+    color: var(--primary);
+}
+
+.question-delete-btn:active {
+    transform: scale(0.95);
+}
+
+/* 新增问法按钮 - 白色背景在浅灰区域上 */
+.add-question-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border: 1px dashed var(--border-color-border);
+    border-radius: var(--border-radius-m);
+    background: #ffffff;
+    color: var(--font-02);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    align-self: flex-start;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.02);
+}
+
+.add-question-btn:hover {
+    border-color: var(--primary);
+    border-style: solid;
+    background: linear-gradient(135deg, rgba(243, 38, 64, 0.08) 0%, rgba(243, 38, 64, 0.04) 100%);
+    color: var(--primary);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px 0 rgba(243, 38, 64, 0.12);
+}
+
+.add-question-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.02);
+}
+
+.add-question-btn svg {
+    width: 14px;
+    height: 14px;
+    color: currentColor;
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.add-question-btn:hover svg {
+    transform: rotate(90deg);
+}
+
+/* 空状态的新增问法按钮 - 合并显示式（紧凑版） */
+.add-question-btn-empty {
+    width: 100%;
+    margin-top: 12px;
+    padding: 12px;
+    gap: 6px;
+    border: 1px dashed rgba(0, 0, 0, 0.08);
+    background: rgba(0, 0, 0, 0.01);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--border-radius-s);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.add-question-btn-empty svg {
+    width: 18px;
+    height: 18px;
+}
+
+.add-question-btn-empty .btn-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.add-question-btn-empty .btn-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--font-01);
+}
+
+.add-question-btn-empty .btn-title .field-optional {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--font-03);
+    margin-left: 4px;
+}
+
+.add-question-btn-empty .btn-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--font-01);
+}
+
+.add-question-btn-empty .btn-hint {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--font-03);
+    text-align: center;
+    line-height: 1.4;
+}
+
+.add-question-btn-empty:hover {
+    border-color: var(--primary);
+    border-style: solid;
+    background: rgba(243, 38, 64, 0.04);
+    transform: none;
+    box-shadow: 0 2px 6px rgba(243, 38, 64, 0.08);
+}
+
+.add-question-btn-empty:hover .btn-title {
+    color: var(--primary);
+}
+
+.add-question-btn-empty:hover .btn-hint {
+    color: var(--font-02);
+}
+
+.add-question-btn-empty:hover svg {
+    transform: rotate(90deg);
+    color: var(--primary);
+}
+
+.add-question-btn-empty:active {
+    transform: scale(0.98);
+}
+
+/* 联动效果：意图名称 hover 时，用户问法区域也高亮 */
+.intent-name-field:hover + .user-questions-field {
+    border-color: var(--neutral-400);
+}
+
+/* 联动效果：意图名称聚焦时，整个容器高亮 */
+.intent-name-field:focus-within + .user-questions-field {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(243, 38, 64, 0.1);
+}
+
+.intent-delete-btn:hover {
+    background: var(--background-01);
+    color: var(--primary);
+}
+
+/* 新增意图按钮 */
+/* 统一的添加按钮样式 */
+.add-intent-btn,
+.add-group-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border: 1px solid var(--border-color-border);
+    border-radius: var(--border-radius-m);
+    background: var(--background-01);
+    color: var(--font-02);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    align-self: flex-start;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+}
+
+.add-intent-btn:hover,
+.add-group-btn:hover {
+    border-color: var(--primary);
+    background: linear-gradient(135deg, rgba(243, 38, 64, 0.08) 0%, rgba(243, 38, 64, 0.04) 100%);
+    color: var(--primary);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px 0 rgba(243, 38, 64, 0.12);
+}
+
+.add-intent-btn:active,
+.add-group-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+}
+
+.add-intent-btn svg,
+.add-group-btn svg {
+    width: 14px;
+    height: 14px;
+    color: currentColor;
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.add-intent-btn:hover svg,
+.add-group-btn:hover svg {
+    transform: rotate(90deg);
+}
+
+/* 添加识别方式按钮组 */
+.add-section-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.add-section-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border: 1px dashed var(--border-color-border);
+    border-radius: var(--border-radius-m);
+    background: var(--background-base);
+    color: var(--font-01);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.add-section-btn:hover {
+    border-color: var(--primary);
+    border-style: solid;
+    color: var(--primary);
+    background: rgba(243, 38, 64, 0.05);
+}
+
+.add-section-btn svg {
+    color: currentColor;
+}
+
+/* 当两个区块都存在时的特殊样式 */
+.message-branch_body:has(.intent-section[style*="display: block"] + .or-divider + .keyword-section[style*="display: block"]) .add-section-buttons {
+    display: none;
+}
+
+/* 当意图区块被删除后 */
+.intent-section[style*="display: none"] ~ .add-section-buttons .add-intent-section-btn {
+    display: inline-flex;
+}
+
+/* 当关键词区块被删除后 */
+.keyword-section[style*="display: none"] ~ .add-section-buttons .add-keyword-section-btn {
+    display: inline-flex;
+}
+
+/* 当只有一个区块显示时或两个都不显示时，隐藏"或"分隔符 */
+.intent-section[style*="display: none"] ~ .or-divider,
+.or-divider:has(+ .keyword-section[style*="display: none"]) {
+    display: none !important;
+}
+
+/* 当两个区块都显示时，显示"或"分隔符 */
+.intent-section[style*="display: block"] + .or-divider + .keyword-section[style*="display: block"] {
+    display: flex;
+}
+
+.intent-section[style*="display: block"] + .or-divider:has(+ .keyword-section[style*="display: block"]) {
+    display: flex;
+}
+
+/* ==================== 兜底意图分支样式 ==================== */
+
+/* 兜底意图整体区域 */
+.fallback-intent-section {
+    margin-bottom: 16px;
+}
+
+/* 兜底意图开关区域 */
+.fallback-intent-toggle {
+    margin-bottom: 0;
+    transition: all 0.2s;
+}
+
+.fallback-intent-toggle:hover {
+    border-color: var(--neutral-400);
+}
+
+.fallback-intent-title {
+    color: var(--font-01);
+    font-size: 14px;
+}
+
+/* 隐藏的复选框 */
+.fallback-intent-checkbox {
+    transform: translateX(-100%);
+    position: absolute;
+    pointer-events: none;
+    opacity: 0;
+    margin: 0;
+    width: 31.5px;
+    height: 17.5px;
+}
+
+/* 兜底意图分支 */
+.fallback-intent-branch {
+    background: var(--background-01);
+    border: 1px solid var(--border-color-border);
+    border-radius: var(--border-radius-l);
+    padding: 12px;
+    margin-top: 8px;
+    transition: all 0.3s ease;
+}
+
+.fallback-intent-branch_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.fallback-intent-branch_body {
+    /* 继承默认样式 */
+}
+
