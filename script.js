@@ -1,5 +1,5 @@
 /**
- * 顾客反馈识别节点配置面板交互脚本
+ * 顾客消息识别节点配置面板交互脚本
  * 整合了意图识别和关键词识别的交互功能
  */
 
@@ -199,7 +199,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    console.log('顾客反馈识别配置面板已加载完成');
+    console.log('顾客消息识别配置面板已加载完成');
 
     // ==================== 行为识别模块功能 ====================
     const behaviorMultiselectBox = document.getElementById('behaviorMultiselectBox');

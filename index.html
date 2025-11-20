@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>顾客反馈识别节点 - 配置面板</title>
+    <title>顾客消息识别节点 - 配置面板</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -17,7 +17,7 @@
             <div color="#ff0000" class="mr css-1cgkfhz snipcss0-5-8-9"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 16 16" data-role="lsicon" class="snipcss0-6-9-10">
                     <path stroke="currentColor" d="M8 11V5M5.5 9C5.99445 9 6.4778 9.14662 6.88893 9.42133C7.30005 9.69603 7.62048 10.0865 7.8097 10.5433C7.99892 11.0001 8.04843 11.5028 7.95196 11.9877C7.8555 12.4727 7.6174 12.9181 7.26777 13.2678C6.91814 13.6174 6.47268 13.8555 5.98773 13.952C5.50277 14.0484 5.00011 13.9989 4.54329 13.8097C4.08648 13.6205 3.69603 13.3 3.42133 12.8889C3.14662 12.4778 3 11.9945 3 11.5V11.0813M10.5 9C10.0055 9 9.5222 9.14662 9.11108 9.42133C8.69995 9.69603 8.37952 10.0865 8.1903 10.5433C8.00108 11.0001 7.95157 11.5028 8.04804 11.9877C8.1445 12.4727 8.3826 12.9181 8.73223 13.2678C9.08187 13.6174 9.52732 13.8555 10.0123 13.952C10.4972 14.0484 10.9999 13.9989 11.4567 13.8097C11.9135 13.6205 12.304 13.3 12.5787 12.8889C12.8534 12.4778 13 11.9945 13 11.5V11.0813M4.5 11.25H4C3.29089 11.2519 2.60403 11.0026 2.06128 10.5462C1.51852 10.0898 1.15497 9.45599 1.03511 8.75708C0.915257 8.05817 1.04685 7.3394 1.40654 6.72828C1.76623 6.11716 2.33077 5.65322 3 5.41875V4.5C3 3.83696 3.26339 3.20107 3.73223 2.73223C4.20107 2.26339 4.83696 2 5.5 2C6.16304 2 6.79893 2.26339 7.26777 2.73223C7.73661 3.20107 8 3.83696 8 4.5M8 4.5V11.5M8 4.5C8 3.83696 8.26339 3.20107 8.73223 2.73223C9.20107 2.26339 9.83696 2 10.5 2C11.163 2 11.7989 2.26339 12.2678 2.73223C12.7366 3.20107 13 3.83696 13 4.5V5.41875C13.6692 5.65322 14.2338 6.11716 14.5935 6.72828C14.9532 7.3394 15.0847 8.05817 14.9649 8.75708C14.845 9.45599 14.4815 10.0898 13.9387 10.5462C13.396 11.0026 12.7091 11.2519 12 11.25H11.5M5.5 5.25V5.75C5.5 6.21413 5.31563 6.65925 4.98744 6.98744C4.65925 7.31563 4.21413 7.5 3.75 7.5M10.5 5.25V5.75C10.5 6.21413 10.6844 6.65925 11.0126 6.98744C11.3408 7.31563 11.7859 7.5 12.25 7.5" />
                 </svg></div>
-            <div class="ant-typography ant-typography-ellipsis ant-typography-ellipsis-single-line hover:flex hover:items-center hover:box-border hover:border hover:rounded hover:text-sm hover:px-[8px] hover:h-[30px] hover:leading-[24px] css-la0689 snipcss0-5-8-11 style-G2Av4" id="style-G2Av4">顾客反馈识别</div>
+            <div class="ant-typography ant-typography-ellipsis ant-typography-ellipsis-single-line hover:flex hover:items-center hover:box-border hover:border hover:rounded hover:text-sm hover:px-[8px] hover:h-[30px] hover:leading-[24px] css-la0689 snipcss0-5-8-11 style-G2Av4" id="style-G2Av4">顾客消息识别</div>
         </div>
     </h2>
 </div>
@@ -67,7 +67,7 @@
                                     <div class="behavior-summary border rounded p-lg mt-lg">
                                         <!-- 功能说明 -->
                                         <div class="behavior-description text-helper text-sm mb">
-                                            识别顾客的特定操作行为（如复制微信、打开留资卡等），触发后续流程
+                                            识别顾客的特定操作行为（如复制微信号、打开留资卡等），触发后续流程
                                         </div>
                                         
                                         <!-- 多选下拉框容器 -->
@@ -90,9 +90,9 @@
                                             <!-- 下拉列表 -->
                                             <div class="behavior-dropdown-list" id="behaviorDropdownList" style="display: none;">
                                                 <div class="behavior-dropdown-item" data-value="card_click" data-label="顾客点击留资卡" data-color="#D61EF6" data-icon='<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 16 16"><path fill="currentColor" d="M2.5 13.5H2C2 13.7761 2.22386 14 2.5 14V13.5ZM2.5 2.5V2C2.22386 2 2 2.22386 2 2.5H2.5ZM13.5 2.5H14C14 2.22386 13.7761 2 13.5 2V2.5ZM13.5 13.5V14C13.7761 14 14 13.7761 14 13.5H13.5ZM2.5 13.5H3V2.5H2.5H2V13.5H2.5ZM2.5 2.5V3H13.5V2.5V2H2.5V2.5ZM13.5 2.5H13V13.5H13.5H14V2.5H13.5ZM13.5 13.5V13H2.5V13.5V14H13.5V13.5ZM4.5 11H5V10.5H4.5H4V11H4.5ZM8.5 10.5H8V11H8.5H9V10.5H8.5ZM6.5 8.5V9C7.32843 9 8 9.67157 8 10.5H8.5H9C9 9.11929 7.88071 8 6.5 8V8.5ZM4.5 10.5H5C5 9.67157 5.67157 9 6.5 9V8.5V8C5.11929 8 4 9.11929 4 10.5H4.5ZM9.5 6.5V7H12V6.5V6H9.5V6.5ZM10.5 9.5V10H12V9.5V9H10.5V9.5ZM8 6.5H7.5C7.5 7.05228 7.05228 7.5 6.5 7.5V8V8.5C7.60457 8.5 8.5 7.60457 8.5 6.5H8ZM6.5 5V5.5C7.05228 5.5 7.5 5.94772 7.5 6.5H8H8.5C8.5 5.39543 7.60457 4.5 6.5 4.5V5ZM5 6.5H5.5C5.5 5.94772 5.94772 5.5 6.5 5.5V5V4.5C5.39543 4.5 4.5 5.39543 4.5 6.5H5ZM5 6.5H4.5C4.5 7.60457 5.39543 8.5 6.5 8.5V8V7.5C5.94772 7.5 5.5 7.05228 5.5 6.5H5Z"/></svg>'>
-                                                    <div class="behavior-item-icon" style="background: #FFFFFF; border: 1px solid rgba(0, 0, 0, 0.1); color: #D61EF6;">
+                                                    <div class="behavior-item-icon" style="background: #FFFFFF; border: 1px solid rgba(0, 0, 0, 0.1);">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 16 16">
-                                                            <path fill="currentColor" d="M2.5 13.5H2C2 13.7761 2.22386 14 2.5 14V13.5ZM2.5 2.5V2C2.22386 2 2 2.22386 2 2.5H2.5ZM13.5 2.5H14C14 2.22386 13.7761 2 13.5 2V2.5ZM13.5 13.5V14C13.7761 14 14 13.7761 14 13.5H13.5ZM2.5 13.5H3V2.5H2.5H2V13.5H2.5ZM2.5 2.5V3H13.5V2.5V2H2.5V2.5ZM13.5 2.5H13V13.5H13.5H14V2.5H13.5ZM13.5 13.5V13H2.5V13.5V14H13.5V13.5ZM4.5 11H5V10.5H4.5H4V11H4.5ZM8.5 10.5H8V11H8.5H9V10.5H8.5ZM6.5 8.5V9C7.32843 9 8 9.67157 8 10.5H8.5H9C9 9.11929 7.88071 8 6.5 8V8.5ZM4.5 10.5H5C5 9.67157 5.67157 9 6.5 9V8.5V8C5.11929 8 4 9.11929 4 10.5H4.5ZM9.5 6.5V7H12V6.5V6H9.5V6.5ZM10.5 9.5V10H12V9.5V9H10.5V9.5ZM8 6.5H7.5C7.5 7.05228 7.05228 7.5 6.5 7.5V8V8.5C7.60457 8.5 8.5 7.60457 8.5 6.5H8ZM6.5 5V5.5C7.05228 5.5 7.5 5.94772 7.5 6.5H8H8.5C8.5 5.39543 7.60457 4.5 6.5 4.5V5ZM5 6.5H5.5C5.5 5.94772 5.94772 5.5 6.5 5.5V5V4.5C5.39543 4.5 4.5 5.39543 4.5 6.5H5ZM5 6.5H4.5C4.5 7.60457 5.39543 8.5 6.5 8.5V8V7.5C5.94772 7.5 5.5 7.05228 5.5 6.5H5Z"/>
+                                                            <path fill="#D61EF6" d="M2.5 13.5H2C2 13.7761 2.22386 14 2.5 14V13.5ZM2.5 2.5V2C2.22386 2 2 2.22386 2 2.5H2.5ZM13.5 2.5H14C14 2.22386 13.7761 2 13.5 2V2.5ZM13.5 13.5V14C13.7761 14 14 13.7761 14 13.5H13.5ZM2.5 13.5H3V2.5H2.5H2V13.5H2.5ZM2.5 2.5V3H13.5V2.5V2H2.5V2.5ZM13.5 2.5H13V13.5H13.5H14V2.5H13.5ZM13.5 13.5V13H2.5V13.5V14H13.5V13.5ZM4.5 11H5V10.5H4.5H4V11H4.5ZM8.5 10.5H8V11H8.5H9V10.5H8.5ZM6.5 8.5V9C7.32843 9 8 9.67157 8 10.5H8.5H9C9 9.11929 7.88071 8 6.5 8V8.5ZM4.5 10.5H5C5 9.67157 5.67157 9 6.5 9V8.5V8C5.11929 8 4 9.11929 4 10.5H4.5ZM9.5 6.5V7H12V6.5V6H9.5V6.5ZM10.5 9.5V10H12V9.5V9H10.5V9.5ZM8 6.5H7.5C7.5 7.05228 7.05228 7.5 6.5 7.5V8V8.5C7.60457 8.5 8.5 7.60457 8.5 6.5H8ZM6.5 5V5.5C7.05228 5.5 7.5 5.94772 7.5 6.5H8H8.5C8.5 5.39543 7.60457 4.5 6.5 4.5V5ZM5 6.5H5.5C5.5 5.94772 5.94772 5.5 6.5 5.5V5V4.5C5.39543 4.5 4.5 5.39543 4.5 6.5H5ZM5 6.5H4.5C4.5 7.60457 5.39543 8.5 6.5 8.5V8V7.5C5.94772 7.5 5.5 7.05228 5.5 6.5H5Z"/>
                                                         </svg>
                                         </div>
                                                     <span class="behavior-item-text">顾客点击留资卡</span>
@@ -102,9 +102,9 @@
                                                 </div>
                                                 
                                                 <div class="behavior-dropdown-item" data-value="link_click" data-label="顾客复制微信号" data-color="#FF8447" data-icon='<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 16 16"><path stroke="currentColor" d="M12 13C12 11.3431 10.6569 10 9 10H7C5.34315 10 4 11.3431 4 13M14.5 8C14.5 11.5899 11.5899 14.5 8 14.5C4.41015 14.5 1.5 11.5899 1.5 8C1.5 4.41015 4.41015 1.5 8 1.5C11.5899 1.5 14.5 4.41015 14.5 8ZM10 6C10 7.10457 9.10457 8 8 8C6.89543 8 6 7.10457 6 6C6 4.89543 6.89543 4 8 4C9.10457 4 10 4.89543 10 6Z"/></svg>'>
-                                                    <div class="behavior-item-icon" style="background: #FFFFFF; border: 1px solid rgba(0, 0, 0, 0.1); color: #FF8447;">
+                                                    <div class="behavior-item-icon" style="background: #FFFFFF; border: 1px solid rgba(0, 0, 0, 0.1);">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 16 16">
-                                                            <path stroke="currentColor" d="M12 13C12 11.3431 10.6569 10 9 10H7C5.34315 10 4 11.3431 4 13M14.5 8C14.5 11.5899 11.5899 14.5 8 14.5C4.41015 14.5 1.5 11.5899 1.5 8C1.5 4.41015 4.41015 1.5 8 1.5C11.5899 1.5 14.5 4.41015 14.5 8ZM10 6C10 7.10457 9.10457 8 8 8C6.89543 8 6 7.10457 6 6C6 4.89543 6.89543 4 8 4C9.10457 4 10 4.89543 10 6Z"/>
+                                                            <path stroke="#FF8447" d="M12 13C12 11.3431 10.6569 10 9 10H7C5.34315 10 4 11.3431 4 13M14.5 8C14.5 11.5899 11.5899 14.5 8 14.5C4.41015 14.5 1.5 11.5899 1.5 8C1.5 4.41015 4.41015 1.5 8 1.5C11.5899 1.5 14.5 4.41015 14.5 8ZM10 6C10 7.10457 9.10457 8 8 8C6.89543 8 6 7.10457 6 6C6 4.89543 6.89543 4 8 4C9.10457 4 10 4.89543 10 6Z"/>
                                                             </svg>
                                                     </div>
                                                     <span class="behavior-item-text">顾客复制微信号</span>
@@ -114,9 +114,9 @@
                                                 </div>
                                                 
                                                 <div class="behavior-dropdown-item" data-value="button_click_wework" data-label="顾客点击企业微信联系卡" data-color="#FF8447" data-icon='<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 16 16"><path stroke="currentColor" d="M12 13C12 11.3431 10.6569 10 9 10H7C5.34315 10 4 11.3431 4 13M14.5 8C14.5 11.5899 11.5899 14.5 8 14.5C4.41015 14.5 1.5 11.5899 1.5 8C1.5 4.41015 4.41015 1.5 8 1.5C11.5899 1.5 14.5 4.41015 14.5 8ZM10 6C10 7.10457 9.10457 8 8 8C6.89543 8 6 7.10457 6 6C6 4.89543 6.89543 4 8 4C9.10457 4 10 4.89543 10 6Z"/></svg>'>
-                                                    <div class="behavior-item-icon" style="background: #FFFFFF; border: 1px solid rgba(0, 0, 0, 0.1); color: #FF8447;">
+                                                    <div class="behavior-item-icon" style="background: #FFFFFF; border: 1px solid rgba(0, 0, 0, 0.1);">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 16 16">
-                                                            <path stroke="currentColor" d="M12 13C12 11.3431 10.6569 10 9 10H7C5.34315 10 4 11.3431 4 13M14.5 8C14.5 11.5899 11.5899 14.5 8 14.5C4.41015 14.5 1.5 11.5899 1.5 8C1.5 4.41015 4.41015 1.5 8 1.5C11.5899 1.5 14.5 4.41015 14.5 8ZM10 6C10 7.10457 9.10457 8 8 8C6.89543 8 6 7.10457 6 6C6 4.89543 6.89543 4 8 4C9.10457 4 10 4.89543 10 6Z"/>
+                                                            <path stroke="#FF8447" d="M12 13C12 11.3431 10.6569 10 9 10H7C5.34315 10 4 11.3431 4 13M14.5 8C14.5 11.5899 11.5899 14.5 8 14.5C4.41015 14.5 1.5 11.5899 1.5 8C1.5 4.41015 4.41015 1.5 8 1.5C11.5899 1.5 14.5 4.41015 14.5 8ZM10 6C10 7.10457 9.10457 8 8 8C6.89543 8 6 7.10457 6 6C6 4.89543 6.89543 4 8 4C9.10457 4 10 4.89543 10 6Z"/>
                                                             </svg>
                                                     </div>
                                                     <span class="behavior-item-text">顾客点击企业微信联系卡</span>
@@ -126,9 +126,9 @@
                                                 </div>
                                                 
                                                 <div class="behavior-dropdown-item" data-value="image_view" data-label="顾客查看手机号" data-color="#FF8447" data-icon='<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 16 16"><path stroke="currentColor" d="M12 13C12 11.3431 10.6569 10 9 10H7C5.34315 10 4 11.3431 4 13M14.5 8C14.5 11.5899 11.5899 14.5 8 14.5C4.41015 14.5 1.5 11.5899 1.5 8C1.5 4.41015 4.41015 1.5 8 1.5C11.5899 1.5 14.5 4.41015 14.5 8ZM10 6C10 7.10457 9.10457 8 8 8C6.89543 8 6 7.10457 6 6C6 4.89543 6.89543 4 8 4C9.10457 4 10 4.89543 10 6Z"/></svg>'>
-                                                    <div class="behavior-item-icon" style="background: #FFFFFF; border: 1px solid rgba(0, 0, 0, 0.1); color: #FF8447;">
+                                                    <div class="behavior-item-icon" style="background: #FFFFFF; border: 1px solid rgba(0, 0, 0, 0.1);">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 16 16">
-                                                            <path stroke="currentColor" d="M12 13C12 11.3431 10.6569 10 9 10H7C5.34315 10 4 11.3431 4 13M14.5 8C14.5 11.5899 11.5899 14.5 8 14.5C4.41015 14.5 1.5 11.5899 1.5 8C1.5 4.41015 4.41015 1.5 8 1.5C11.5899 1.5 14.5 4.41015 14.5 8ZM10 6C10 7.10457 9.10457 8 8 8C6.89543 8 6 7.10457 6 6C6 4.89543 6.89543 4 8 4C9.10457 4 10 4.89543 10 6Z"/>
+                                                            <path stroke="#FF8447" d="M12 13C12 11.3431 10.6569 10 9 10H7C5.34315 10 4 11.3431 4 13M14.5 8C14.5 11.5899 11.5899 14.5 8 14.5C4.41015 14.5 1.5 11.5899 1.5 8C1.5 4.41015 4.41015 1.5 8 1.5C11.5899 1.5 14.5 4.41015 14.5 8ZM10 6C10 7.10457 9.10457 8 8 8C6.89543 8 6 7.10457 6 6C6 4.89543 6.89543 4 8 4C9.10457 4 10 4.89543 10 6Z"/>
                                                             </svg>
                                                     </div>
                                                     <span class="behavior-item-text">顾客查看手机号</span>
@@ -138,9 +138,9 @@
                                                 </div>
                                                 
                                                 <div class="behavior-dropdown-item" data-value="file_download" data-label="顾客复制钉钉号" data-color="#FF8447" data-icon='<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 16 16"><path stroke="currentColor" d="M12 13C12 11.3431 10.6569 10 9 10H7C5.34315 10 4 11.3431 4 13M14.5 8C14.5 11.5899 11.5899 14.5 8 14.5C4.41015 14.5 1.5 11.5899 1.5 8C1.5 4.41015 4.41015 1.5 8 1.5C11.5899 1.5 14.5 4.41015 14.5 8ZM10 6C10 7.10457 9.10457 8 8 8C6.89543 8 6 7.10457 6 6C6 4.89543 6.89543 4 8 4C9.10457 4 10 4.89543 10 6Z"/></svg>'>
-                                                    <div class="behavior-item-icon" style="background: #FFFFFF; border: 1px solid rgba(0, 0, 0, 0.1); color: #FF8447;">
+                                                    <div class="behavior-item-icon" style="background: #FFFFFF; border: 1px solid rgba(0, 0, 0, 0.1);">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 16 16">
-                                                            <path stroke="currentColor" d="M12 13C12 11.3431 10.6569 10 9 10H7C5.34315 10 4 11.3431 4 13M14.5 8C14.5 11.5899 11.5899 14.5 8 14.5C4.41015 14.5 1.5 11.5899 1.5 8C1.5 4.41015 4.41015 1.5 8 1.5C11.5899 1.5 14.5 4.41015 14.5 8ZM10 6C10 7.10457 9.10457 8 8 8C6.89543 8 6 7.10457 6 6C6 4.89543 6.89543 4 8 4C9.10457 4 10 4.89543 10 6Z"/>
+                                                            <path stroke="#FF8447" d="M12 13C12 11.3431 10.6569 10 9 10H7C5.34315 10 4 11.3431 4 13M14.5 8C14.5 11.5899 11.5899 14.5 8 14.5C4.41015 14.5 1.5 11.5899 1.5 8C1.5 4.41015 4.41015 1.5 8 1.5C11.5899 1.5 14.5 4.41015 14.5 8ZM10 6C10 7.10457 9.10457 8 8 8C6.89543 8 6 7.10457 6 6C6 4.89543 6.89543 4 8 4C9.10457 4 10 4.89543 10 6Z"/>
                                                             </svg>
                                                     </div>
                                                     <span class="behavior-item-text">顾客复制钉钉号</span>
@@ -150,10 +150,10 @@
                                                 </div>
                                                 
                                                 <div class="behavior-dropdown-item" data-value="form_submit" data-label="顾客打开交易卡" data-color="#7D52F4" data-icon='<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 16 16"><g clip-path="url(#clip0_18108_67252)"><path d="M10 7.5C10.8284 7.5 11.5 6.82843 11.5 6C11.5 5.17157 10.8284 4.5 10 4.5H9.94444C8.87056 4.5 8 5.37056 8 6.44444V9.3125C8 10.5206 7.02062 11.5 5.8125 11.5C5.08763 11.5 4.5 10.9124 4.5 10.1875V10C4.5 9.17157 5.17157 8.5 6 8.5M8 1.5C4.41015 1.5 1.5 4.41015 1.5 8C1.5 11.5899 4.41015 14.5 8 14.5C11.5899 14.5 14.5 11.5899 14.5 8C14.5 4.41015 11.5899 1.5 8 1.5Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></g><defs><clipPath id="clip0_18108_67252"><rect width="16" height="16" fill="white"/></clipPath></defs></svg>'>
-                                                    <div class="behavior-item-icon" style="background: #FFFFFF; border: 1px solid rgba(0, 0, 0, 0.1); color: #7D52F4;">
+                                                    <div class="behavior-item-icon" style="background: #FFFFFF; border: 1px solid rgba(0, 0, 0, 0.1);">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 16 16">
                                                                 <g clip-path="url(#clip0_18108_67252_display)">
-                                                                <path d="M10 7.5C10.8284 7.5 11.5 6.82843 11.5 6C11.5 5.17157 10.8284 4.5 10 4.5H9.94444C8.87056 4.5 8 5.37056 8 6.44444V9.3125C8 10.5206 7.02062 11.5 5.8125 11.5C5.08763 11.5 4.5 10.9124 4.5 10.1875V10C4.5 9.17157 5.17157 8.5 6 8.5M8 1.5C4.41015 1.5 1.5 4.41015 1.5 8C1.5 11.5899 4.41015 14.5 8 14.5C11.5899 14.5 14.5 11.5899 14.5 8C14.5 4.41015 11.5899 1.5 8 1.5Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                <path d="M10 7.5C10.8284 7.5 11.5 6.82843 11.5 6C11.5 5.17157 10.8284 4.5 10 4.5H9.94444C8.87056 4.5 8 5.37056 8 6.44444V9.3125C8 10.5206 7.02062 11.5 5.8125 11.5C5.08763 11.5 4.5 10.9124 4.5 10.1875V10C4.5 9.17157 5.17157 8.5 6 8.5M8 1.5C4.41015 1.5 1.5 4.41015 1.5 8C1.5 11.5899 4.41015 14.5 8 14.5C11.5899 14.5 14.5 11.5899 14.5 8C14.5 4.41015 11.5899 1.5 8 1.5Z" stroke="#7D52F4" stroke-linecap="round" stroke-linejoin="round"/>
                                                                 </g>
                                                                 <defs>
                                                                     <clipPath id="clip0_18108_67252_display">
@@ -297,7 +297,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M8 5.5V8.5M8 11H8.005M14 8C14 11.3137 11.3137 14 8 14C4.68629 14 2 11.3137 2 8C2 4.68629 4.68629 2 8 2C11.3137 2 14 4.68629 14 8Z"/>
                 </svg>
-                <span>在所有「顾客反馈识别」节点间共享使用。匹配逻辑：① 优先判断当前节点分支 → ② 均未命中时判断共享兜底分支</span>
+                <span>在所有「顾客消息识别」节点间共享使用。匹配逻辑：① 优先判断当前节点分支 → ② 均未命中时判断共享兜底分支</span>
             </div>
             
             <!-- 配置内容区域 - 与正常分支配置相同 -->
