@@ -966,7 +966,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 10. 新增分支
     document.addEventListener('click', function(e) {
-        const addBranchBtn = e.target.closest('.add-branch-btn');
+        const addBranchBtn = e.target.closest('.add-branch-btn-empty, .add-branch-btn');
         if (addBranchBtn) {
             e.preventDefault(); // 阻止表单提交
             console.log('点击了新增分支按钮');
@@ -1130,8 +1130,13 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
             
             // 在"新增分支"按钮之前插入
-            const addBranchSection = container.querySelector('.add-branch-section');
+            const addBranchSection = container.querySelector('.add-branch-section-empty, .add-branch-section');
             container.insertBefore(newBranch, addBranchSection);
+            
+            // 如果之前是空状态,切换为普通样式
+            if (existingBranches.length === 0) {
+                toggleAddBranchStyle(container, false);
+            }
             
             // 为新分支绑定编辑和折叠事件
             bindBranchEvents(newBranch);
@@ -1175,58 +1180,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     console.log('顾客消息识别模块已加载完成');
     
-    // ==================== 兜底意图功能 ====================
-    
-    // 兜底意图开关
-    const fallbackIntentSwitch = document.getElementById('fallbackIntentSwitch');
-    const fallbackIntentBranch = document.querySelector('.fallback-intent-branch');
-    const fallbackIntentCheckbox = document.querySelector('.fallback-intent-checkbox');
-    
-    if (fallbackIntentSwitch && fallbackIntentBranch) {
-        fallbackIntentSwitch.addEventListener('click', function() {
-            const isChecked = this.getAttribute('aria-checked') === 'true';
-            const newState = !isChecked;
-            
-            // 更新开关状态
-            this.setAttribute('aria-checked', newState);
-            this.setAttribute('data-state', newState ? 'checked' : 'unchecked');
-            
-            // 更新隐藏复选框
-            if (fallbackIntentCheckbox) {
-                fallbackIntentCheckbox.checked = newState;
-            }
-            
-            // 更新圆点位置
-            const thumb = this.querySelector('span');
-            if (thumb) {
-                thumb.setAttribute('data-state', newState ? 'checked' : 'unchecked');
-            }
-            
-            // 显示/隐藏兜底意图分支
-            if (newState) {
-                // 开启：显示兜底意图分支
-                fallbackIntentBranch.style.display = 'block';
-                // 添加淡入动画
-                fallbackIntentBranch.style.opacity = '0';
-                fallbackIntentBranch.style.transform = 'translateY(-10px)';
-                setTimeout(() => {
-                    fallbackIntentBranch.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-                    fallbackIntentBranch.style.opacity = '1';
-                    fallbackIntentBranch.style.transform = 'translateY(0)';
-                }, 10);
-            } else {
-                // 关闭：隐藏兜底意图分支
-                fallbackIntentBranch.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
-                fallbackIntentBranch.style.opacity = '0';
-                fallbackIntentBranch.style.transform = 'translateY(-10px)';
-                setTimeout(() => {
-                    fallbackIntentBranch.style.display = 'none';
-                }, 200);
-            }
-        });
-    }
-    
-    console.log('兜底意图功能已加载完成');
+    // ==================== 兜底意图功能（已废弃，使用新的共享兜底分支） ====================
+    // 旧代码已移除，避免与新的共享兜底分支功能冲突
     
     // ==================== 初始化已存在的区块 ====================
     
@@ -1251,13 +1206,480 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('新增意图按钮数量:', document.querySelectorAll('.add-intent-btn').length);
     console.log('意图删除按钮数量:', document.querySelectorAll('.intent-delete-btn').length);
     console.log('区块删除按钮数量:', document.querySelectorAll('.section-delete-btn').length);
-    console.log('新增分支按钮数量:', document.querySelectorAll('.add-branch-btn').length);
+    console.log('新增分支按钮数量(空状态):', document.querySelectorAll('.add-branch-btn-empty').length);
+    console.log('新增分支按钮数量(普通):', document.querySelectorAll('.add-branch-btn').length);
     console.log('或者按钮数量:', document.querySelectorAll('.add-group-btn').length);
     console.log('并且按钮数量:', document.querySelectorAll('.add-condition-btn').length);
     console.log('条件删除按钮数量:', document.querySelectorAll('.delete-btn').length);
     console.log('分支删除按钮数量:', document.querySelectorAll('.branch-delete-btn').length);
     console.log('===== 统计结束 =====');
+    
+    // ==================== 共享兜底分支交互 ====================
+    const fallbackSwitch = document.getElementById('fallbackIntentSwitch');
+    const fallbackStatusCard = document.querySelector('.fallback-status-card');
+    const configModal = document.getElementById('fallbackConfigModal');
+    const openConfigBtn = document.getElementById('openConfigModal');
+    const editConfigBtn = document.getElementById('editConfigModal');
+    const closeModalBtn = document.getElementById('closeConfigModal');
+    const cancelModalBtn = document.getElementById('cancelConfigModal');
+    const saveModalBtn = document.getElementById('saveConfigModal');
+    const modalOverlay = document.querySelector('.config-modal-overlay');
+    
+    // 模拟配置状态（实际应从后端获取）
+    let isConfigured = false; // 是否已配置
+    let configuredBranches = []; // 已配置的分支列表
+    
+    // 1. 开关切换
+    if (fallbackSwitch) {
+        // 使用防抖来避免重复触发
+        let isToggling = false;
+        
+        fallbackSwitch.addEventListener('click', function(e) {
+            // 防止事件重复触发
+            if (isToggling) {
+                console.log('⏸️ 正在切换中，忽略重复点击');
+                return;
+            }
+            
+            isToggling = true;
+            
+            // 停止事件冒泡
+            e.stopPropagation();
+            e.preventDefault();
+            
+            const isChecked = this.getAttribute('aria-checked') === 'true';
+            const newState = !isChecked;
+            
+            console.log('🔘 开关点击 - 当前状态:', isChecked, '→ 新状态:', newState);
+            
+            // 更新开关状态
+            this.setAttribute('aria-checked', newState);
+            this.setAttribute('data-state', newState ? 'checked' : 'unchecked');
+            
+            const span = this.querySelector('span');
+            if (span) {
+                span.setAttribute('data-state', newState ? 'checked' : 'unchecked');
+            }
+            
+            // 显示/隐藏状态卡片
+            if (fallbackStatusCard) {
+                const oldDisplay = fallbackStatusCard.style.display;
+                fallbackStatusCard.style.display = newState ? 'block' : 'none';
+                console.log('📋 状态卡片显示状态:', oldDisplay, '→', fallbackStatusCard.style.display);
+                
+                if (newState) {
+                    // 根据是否已配置显示不同的卡片
+                    updateStatusCard();
+                    
+                    // 检查按钮是否可见
+                    setTimeout(() => {
+                        const openBtn = document.getElementById('openConfigModal');
+                        const editBtn = document.getElementById('editConfigModal');
+                        console.log('🔍 检查按钮可见性:');
+                        console.log('  - 立即配置按钮:', openBtn, '可见:', openBtn?.offsetParent !== null);
+                        console.log('  - 配置共享分支按钮:', editBtn, '可见:', editBtn?.offsetParent !== null);
+                    }, 100);
+                }
+            } else {
+                console.warn('⚠️ fallbackStatusCard 未找到');
+            }
+            
+            console.log('共享兜底分支', newState ? '已开启' : '已关闭');
+            
+            // 300ms后重置防抖标志
+            setTimeout(() => {
+                isToggling = false;
+            }, 300);
+        }, true); // 使用捕获阶段
+        
+        console.log('✓ 开关点击事件已绑定（带防抖）');
+    } else {
+        console.warn('✗ fallbackSwitch 未找到');
+    }
+    
+    // 2. 更新状态卡片
+    function updateStatusCard() {
+        const emptyCard = document.querySelector('.status-card-empty');
+        const configuredCard = document.querySelector('.status-card-configured');
+        
+        if (isConfigured && configuredBranches.length > 0) {
+            // 显示已配置状态
+            if (emptyCard) emptyCard.style.display = 'none';
+            if (configuredCard) {
+                configuredCard.style.display = 'flex';
+                
+                // 更新分支数量
+                const branchCount = configuredCard.querySelector('.branch-count');
+                if (branchCount) {
+                    branchCount.textContent = configuredBranches.length;
+                }
+                
+                // 更新分支预览
+                const branchPreview = configuredCard.querySelector('.branch-preview');
+                if (branchPreview) {
+                    const names = configuredBranches.map(b => b.name).join('、');
+                    branchPreview.textContent = names;
+                }
+            }
+        } else {
+            // 显示未配置状态
+            if (emptyCard) emptyCard.style.display = 'flex';
+            if (configuredCard) configuredCard.style.display = 'none';
+        }
+    }
+    
+    // 3. 打开配置 Modal
+    function openModal() {
+        if (configModal) {
+            configModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // 禁止背景滚动
+            
+            // 加载当前配置（如果有）
+            loadModalConfig();
+            
+            console.log('打开共享兜底分支配置 Modal');
+        }
+    }
+    
+    // 4. 关闭配置 Modal
+    function closeModal() {
+        if (configModal) {
+            configModal.style.display = 'none';
+            document.body.style.overflow = ''; // 恢复滚动
+            console.log('关闭共享兜底分支配置 Modal');
+        }
+    }
+    
+    // 5. 加载 Modal 配置内容
+    function loadModalConfig() {
+        const container = document.getElementById('fallbackBranchesContainer');
+        if (!container) return;
+        
+        // 如果已有配置，显示现有配置
+        if (isConfigured && configuredBranches.length > 0) {
+            // TODO: 渲染已配置的分支
+            container.innerHTML = '<div style="padding: 40px; text-align: center; color: var(--font-03);">已配置的分支列表将在这里显示<br/>（实际使用时会复用现有分支配置组件）</div>';
+        } else {
+            // 显示空状态提示
+            container.innerHTML = `
+                <div style="padding: 60px 20px; text-align: center;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" viewBox="0 0 16 16" style="margin: 0 auto 16px; opacity: 0.3; display: block;">
+                        <path stroke="currentColor" d="M5 13.5H2.5V11M5 5.5H8M8 5.5H11M8 5.5V11M2.5 5V2.5H5M11 13.5H13.5V11M13.5 5V2.5H11" />
+                    </svg>
+                    <div style="font-size: 14px; color: var(--font-03); margin-bottom: 16px;">尚未配置任何分支</div>
+                    <button class="add-modal-branch-btn" style="margin: 0 auto; display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border: 1px solid var(--border-color-border); border-radius: var(--border-radius-m); background: var(--background-base); color: var(--font-01); font-size: 14px; font-weight: 500; cursor: pointer; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); transition: all 0.2s;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 16 16">
+                            <path stroke="currentColor" d="M3 8H13M8 3V13" />
+                        </svg>
+                        新增分支
+                    </button>
+                </div>
+            `;
+            
+            // 为Modal内的新增分支按钮绑定事件
+            const addModalBranchBtn = container.querySelector('.add-modal-branch-btn');
+            if (addModalBranchBtn) {
+                addModalBranchBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('点击了Modal内的新增分支按钮');
+                    addModalBranch();
+                });
+            }
+        }
+    }
+    
+    // 5.1 在Modal内添加分支
+    function addModalBranch() {
+        const container = document.getElementById('fallbackBranchesContainer');
+        if (!container) return;
+        
+        console.log('在Modal内添加新分支');
+        
+        // 获取现有分支数量
+        const existingBranches = container.querySelectorAll('.modal-branch-item');
+        const branchNumber = existingBranches.length + 1;
+        
+        // 如果是第一个分支，清空空状态
+        if (existingBranches.length === 0) {
+            container.innerHTML = '<div class="modal-branches-list"></div>';
+        }
+        
+        const branchList = container.querySelector('.modal-branches-list');
+        
+        // 创建新分支HTML
+        const branchHTML = `
+            <div class="modal-branch-item" data-branch-id="${branchNumber}">
+                <div class="modal-branch-header">
+                    <div class="modal-branch-title-group">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16" style="color: var(--font-03);">
+                            <path stroke="currentColor" d="M5 13.5H2.5V11M5 5.5H8M8 5.5H11M8 5.5V11M2.5 5V2.5H5M11 13.5H13.5V11M13.5 5V2.5H11" />
+                        </svg>
+                        <span class="modal-branch-title">分支-${branchNumber}</span>
+                    </div>
+                    <button class="modal-branch-delete-btn" data-branch-id="${branchNumber}" style="padding: 4px; background: transparent; border: none; cursor: pointer; color: var(--font-03); display: flex; align-items: center;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
+                            <path stroke="currentColor" d="M9.5 7V11M6 2.5H10M2 4.5H14M12.5 4.5V13.5H3.5V4.5M6.5 7V11" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="modal-branch-content">
+                    <!-- 分支识别配置 -->
+                    <div class="modal-branch-config-section">
+                        <div class="modal-config-label">识别条件</div>
+                        <div class="modal-config-placeholder">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 16 16" style="color: var(--font-03); opacity: 0.5;">
+                                <path stroke="currentColor" d="M8 11V5M5.5 9C5.99445 9 6.4778 9.14662 6.88893 9.42133C7.30005 9.69603 7.62048 10.0865 7.8097 10.5433C7.99892 11.0001 8.04843 11.5028 7.95196 11.9877C7.8555 12.4727 7.6174 12.9181 7.26777 13.2678C6.91814 13.6174 6.47268 13.8555 5.98773 13.952C5.50277 14.0484 5.00011 13.9989 4.54329 13.8097C4.08648 13.6205 3.69603 13.3 3.42133 12.8889C3.14662 12.4778 3 11.9945 3 11.5V11.0813M10.5 9C10.0055 9 9.5222 9.14662 9.11108 9.42133C8.69995 9.69603 8.37952 10.0865 8.1903 10.5433C8.00108 11.0001 7.95157 11.5028 8.04804 11.9877C8.1445 12.4727 8.3826 12.9181 8.73223 13.2678C9.08187 13.6174 9.52732 13.8555 10.0123 13.952C10.4972 14.0484 10.9999 13.9989 11.4567 13.8097C11.9135 13.6205 12.304 13.3 12.5787 12.8889C12.8534 12.4778 13 11.9945 13 11.5V11.0813M4.5 11.25H4C3.29089 11.2519 2.60403 11.0026 2.06128 10.5462C1.51852 10.0898 1.15497 9.45599 1.03511 8.75708C0.915257 8.05817 1.04685 7.3394 1.40654 6.72828C1.76623 6.11716 2.33077 5.65322 3 5.41875V4.5C3 3.83696 3.26339 3.20107 3.73223 2.73223C4.20107 2.26339 4.83696 2 5.5 2C6.16304 2 6.79893 2.26339 7.26777 2.73223C7.73661 3.20107 8 3.83696 8 4.5M8 4.5V11.5M8 4.5C8 3.83696 8.26339 3.20107 8.73223 2.73223C9.20107 2.26339 9.83696 2 10.5 2C11.163 2 11.7989 2.26339 12.2678 2.73223C12.7366 3.20107 13 3.83696 13 4.5V5.41875C13.6692 5.65322 14.2338 6.11716 14.5935 6.72828C14.9532 7.3394 15.0847 8.05817 14.9649 8.75708C14.845 9.45599 14.4815 10.0898 13.9387 10.5462C13.396 11.0026 12.7091 11.2519 12 11.25H11.5M5.5 5.25V5.75C5.5 6.21413 5.31563 6.65925 4.98744 6.98744C4.65925 7.31563 4.21413 7.5 3.75 7.5M10.5 5.25V5.75C10.5 6.21413 10.6844 6.65925 11.0126 6.98744C11.3408 7.31563 11.7859 7.5 12.25 7.5" />
+                            </svg>
+                            <span style="font-size: 13px; color: var(--font-03);">配置意图识别或关键词识别条件</span>
+                        </div>
+                    </div>
+                    
+                    <!-- 跳转节点选择 -->
+                    <div class="modal-branch-jump-section">
+                        <div class="modal-config-label">
+                            <span>命中后跳转到</span>
+                            <span style="color: var(--primary);">*</span>
+                        </div>
+                        <div class="modal-jump-selector">
+                            <select class="modal-jump-select" data-branch-id="${branchNumber}">
+                                <option value="">请选择跳转节点</option>
+                                <option value="node-1">发送消息</option>
+                                <option value="node-2">AI 回复</option>
+                                <option value="node-3">转人工客服</option>
+                                <option value="node-4">结束对话</option>
+                                <option value="node-5">其他识别节点</option>
+                            </select>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16" class="modal-jump-icon">
+                                <path stroke="currentColor" d="M4.5 6L8 9.5L11.5 6" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        // 添加到列表
+        if (branchList) {
+            branchList.insertAdjacentHTML('beforeend', branchHTML);
+        }
+        
+        // 确保有新增分支按钮
+        let addBtn = container.querySelector('.add-modal-branch-btn');
+        if (!addBtn) {
+            container.insertAdjacentHTML('beforeend', `
+                <button class="add-modal-branch-btn" style="margin-top: 16px; display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border: 1px solid var(--border-color-border); border-radius: var(--border-radius-m); background: var(--background-base); color: var(--font-01); font-size: 14px; font-weight: 500; cursor: pointer; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); transition: all 0.2s;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 16 16">
+                        <path stroke="currentColor" d="M3 8H13M8 3V13" />
+                    </svg>
+                    新增分支
+                </button>
+            `);
+            addBtn = container.querySelector('.add-modal-branch-btn');
+        }
+        
+        // 绑定新增分支按钮
+        if (addBtn) {
+            // 移除旧的监听器，重新绑定
+            const newAddBtn = addBtn.cloneNode(true);
+            addBtn.parentNode.replaceChild(newAddBtn, addBtn);
+            newAddBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('继续添加更多分支');
+                addModalBranch();
+            });
+        }
+        
+        // 绑定新添加分支的删除按钮
+        const newDeleteBtn = container.querySelector(`[data-branch-id="${branchNumber}"].modal-branch-delete-btn`);
+        if (newDeleteBtn) {
+            newDeleteBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const branchId = this.getAttribute('data-branch-id');
+                console.log('删除Modal内的分支:', branchId);
+                deleteModalBranch(branchId);
+            });
+        }
+        
+        // 绑定跳转节点选择器变化事件
+        const jumpSelect = container.querySelector(`select[data-branch-id="${branchNumber}"]`);
+        if (jumpSelect) {
+            jumpSelect.addEventListener('change', function(e) {
+                const branchId = this.getAttribute('data-branch-id');
+                const selectedNode = this.value;
+                console.log(`分支-${branchId} 选择跳转到:`, selectedNode);
+            });
+        }
+    }
+    
+    // 5.2 删除Modal内的分支
+    function deleteModalBranch(branchId) {
+        const container = document.getElementById('fallbackBranchesContainer');
+        if (!container) return;
+        
+        const branchItem = container.querySelector(`.modal-branch-item[data-branch-id="${branchId}"]`);
+        if (!branchItem) return;
+        
+        // 添加删除动画
+        branchItem.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        branchItem.style.opacity = '0';
+        branchItem.style.transform = 'translateX(-10px)';
+        
+        setTimeout(() => {
+            branchItem.remove();
+            
+            // 检查是否还有分支，如果没有则恢复空状态
+            const remainingBranches = container.querySelectorAll('.modal-branch-item');
+            if (remainingBranches.length === 0) {
+                loadModalConfig();
+            }
+        }, 300);
+    }
+    
+    // 6. 保存配置
+    function saveConfig() {
+        // TODO: 实际保存逻辑
+        console.log('保存共享兜底分支配置');
+        
+        // 模拟保存成功
+        isConfigured = true;
+        configuredBranches = [
+            { name: '退款处理', type: 'intent' },
+            { name: '物流查询', type: 'keyword' },
+            { name: '投诉建议', type: 'intent' }
+        ];
+        
+        // 更新状态卡片
+        updateStatusCard();
+        
+        // 关闭 Modal
+        closeModal();
+        
+        // 显示成功提示
+        alert('配置已保存！');
+    }
+    
+    // 调试：检查元素是否被找到
+    console.log('=== 共享兜底分支元素检查 ===');
+    console.log('fallbackSwitch:', fallbackSwitch);
+    console.log('fallbackStatusCard:', fallbackStatusCard);
+    console.log('configModal:', configModal);
+    console.log('openConfigBtn:', openConfigBtn);
+    console.log('editConfigBtn:', editConfigBtn);
+    console.log('closeModalBtn:', closeModalBtn);
+    console.log('cancelModalBtn:', cancelModalBtn);
+    console.log('saveModalBtn:', saveModalBtn);
+    console.log('modalOverlay:', modalOverlay);
+    console.log('=========================');
+    
+    // 绑定事件
+    if (openConfigBtn) {
+        openConfigBtn.addEventListener('click', function(e) {
+            e.preventDefault(); // 阻止默认行为（表单提交）
+            e.stopPropagation(); // 阻止事件冒泡
+            console.log('点击了立即配置按钮');
+            openModal();
+        });
+        console.log('✓ 立即配置按钮事件已绑定');
+    } else {
+        console.warn('✗ 未找到立即配置按钮');
+    }
+    
+    if (editConfigBtn) {
+        editConfigBtn.addEventListener('click', function(e) {
+            e.preventDefault(); // 阻止默认行为（表单提交）
+            e.stopPropagation(); // 阻止事件冒泡
+            console.log('点击了配置共享分支按钮');
+            openModal();
+        });
+        console.log('✓ 配置共享分支按钮事件已绑定');
+    } else {
+        console.warn('✗ 未找到配置共享分支按钮');
+    }
+    
+    if (closeModalBtn) {
+        closeModalBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            closeModal();
+        });
+        console.log('✓ 关闭按钮事件已绑定');
+    }
+    
+    if (cancelModalBtn) {
+        cancelModalBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            closeModal();
+        });
+        console.log('✓ 取消按钮事件已绑定');
+    }
+    
+    if (saveModalBtn) {
+        saveModalBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            saveConfig();
+        });
+        console.log('✓ 保存按钮事件已绑定');
+    }
+    
+    if (modalOverlay) {
+        modalOverlay.addEventListener('click', closeModal);
+        console.log('✓ 遮罩层事件已绑定');
+    }
+    
+    // ESC 键关闭 Modal
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && configModal && configModal.style.display === 'flex') {
+            closeModal();
+        }
+    });
+    
+    console.log('共享兜底分支交互已初始化完成');
 });
+
+// ==================== 切换添加分支按钮样式 ====================
+/**
+ * 切换添加分支按钮的样式(空状态 <-> 普通样式)
+ * @param {HTMLElement} container - 顾客消息识别容器
+ * @param {boolean} isEmpty - 是否为空状态(true: 显示空状态样式, false: 显示普通样式)
+ */
+function toggleAddBranchStyle(container, isEmpty) {
+    const addBranchSection = container.querySelector('.add-branch-section-empty, .add-branch-section');
+    if (!addBranchSection) return;
+    
+    if (isEmpty) {
+        // 切换为空状态样式
+        addBranchSection.className = 'add-branch-section-empty';
+        addBranchSection.innerHTML = `
+            <div class="empty-state-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" viewBox="0 0 16 16">
+                    <path stroke="currentColor" stroke-width="1" d="M5 13.5H2.5V11M5 5.5H8M8 5.5H11M8 5.5V11M2.5 5V2.5H5M11 13.5H13.5V11M13.5 5V2.5H11" />
+                </svg>
+            </div>
+            <button class="add-branch-btn-empty">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
+                    <path stroke="currentColor" d="M3 8H13M8 3V13" />
+                </svg>
+                新增分支
+            </button>
+        `;
+    } else {
+        // 切换为普通样式
+        addBranchSection.className = 'add-branch-section';
+        addBranchSection.innerHTML = `
+            <button class="add-branch-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 16 16">
+                    <path stroke="currentColor" d="M3 8H13M8 3V13" />
+                </svg>
+                新增分支
+            </button>
+        `;
+    }
+}
 
 // ==================== 删除分支功能 ====================
 document.addEventListener('click', function(e) {
@@ -1269,6 +1691,7 @@ document.addEventListener('click', function(e) {
         const branch = deleteBranchBtn.closest('.message-branch');
         if (!branch) return;
         
+        const container = branch.closest('.message-recognition-container');
         const branchTitle = branch.querySelector('.branch-title')?.textContent || '此分支';
         
         // 确认删除
@@ -1284,8 +1707,14 @@ document.addEventListener('click', function(e) {
             setTimeout(() => {
                 branch.remove();
                 console.log(`${branchTitle} 已删除`);
+                
+                // 检查是否还有其他分支，如果没有则切换为空状态
+                const remainingBranches = container.querySelectorAll('.message-branch');
+                if (remainingBranches.length === 0) {
+                    toggleAddBranchStyle(container, true);
+                    console.log('所有分支已删除，切换为空状态样式');
+                }
             }, 300);
         }
     }
 });
-

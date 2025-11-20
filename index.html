@@ -201,195 +201,71 @@
                         </div>
                         <div class="accord_item_body snipcss0-8-message-56">
                             <div class="message-recognition-container">
-                                <!-- 分支-1 示例 -->
-                                <div class="message-branch" data-branch-id="1">
-                                    <div class="message-branch_header">
-                                            <div class="branch-title-group">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 16 16" class="branch-icon">
-                                                    <path stroke="currentColor" d="M5 13.5H2.5V11M5 5.5H8M8 5.5H11M8 5.5V11M2.5 5V2.5H5M11 13.5H13.5V11M13.5 5V2.5H11" />
+                                <!-- 新增分支按钮 - 空状态 -->
+                                <div class="add-branch-section-empty">
+                                    <div class="empty-state-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" viewBox="0 0 16 16">
+                                            <path stroke="currentColor" stroke-width="1" d="M5 13.5H2.5V11M5 5.5H8M8 5.5H11M8 5.5V11M2.5 5V2.5H5M11 13.5H13.5V11M13.5 5V2.5H11" />
                                                 </svg>
-                                                <div class="branch-title">分支-1</div>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 16 16" class="edit-icon">
-                                                    <path stroke="currentColor" d="M2 13.5H14M3.77541 8.217L9.99241 2L12.1137 4.12132L5.89673 10.3383L3.32966 10.8936L3.77541 8.217Z" />
-                                                </svg>
-                                            </div>
-                                            <div class="branch-header-actions">
-                                                <button class="branch-delete-btn" title="删除分支">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
-                                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M9.5 7V11M6 2.5H10M2 4.5H14M12.5 4.5V13.5H3.5V4.5M6.5 7V11" />
-                                                    </svg>
-                                                </button>
-                                            <div class="branch-collapse-btn">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 16 16">
-                                                    <path stroke="currentColor" d="M4.5 6L8 9.5L11.5 6" />
-                                                </svg>
-                                            </div>
-                                        </div>
                                     </div>
-                                    
-                                    <div class="message-branch_body">
-                                        <!-- 意图识别区块 -->
-                                        <div class="intent-section" style="display: block;">
-                                            <div class="section-header">
-                                                <div class="section-title-group">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 16 16" class="section-icon">
-                                                        <path stroke="currentColor" d="M8 11V5M5.5 9C5.99445 9 6.4778 9.14662 6.88893 9.42133C7.30005 9.69603 7.62048 10.0865 7.8097 10.5433C7.99892 11.0001 8.04843 11.5028 7.95196 11.9877C7.8555 12.4727 7.6174 12.9181 7.26777 13.2678C6.91814 13.6174 6.47268 13.8555 5.98773 13.952C5.50277 14.0484 5.00011 13.9989 4.54329 13.8097C4.08648 13.6205 3.69603 13.3 3.42133 12.8889C3.14662 12.4778 3 11.9945 3 11.5V11.0813M10.5 9C10.0055 9 9.5222 9.14662 9.11108 9.42133C8.69995 9.69603 8.37952 10.0865 8.1903 10.5433C8.00108 11.0001 7.95157 11.5028 8.04804 11.9877C8.1445 12.4727 8.3826 12.9181 8.73223 13.2678C9.08187 13.6174 9.52732 13.8555 10.0123 13.952C10.4972 14.0484 10.9999 13.9989 11.4567 13.8097C11.9135 13.6205 12.304 13.3 12.5787 12.8889C12.8534 12.4778 13 11.9945 13 11.5V11.0813M4.5 11.25H4C3.29089 11.2519 2.60403 11.0026 2.06128 10.5462C1.51852 10.0898 1.15497 9.45599 1.03511 8.75708C0.915257 8.05817 1.04685 7.3394 1.40654 6.72828C1.76623 6.11716 2.33077 5.65322 3 5.41875V4.5C3 3.83696 3.26339 3.20107 3.73223 2.73223C4.20107 2.26339 4.83696 2 5.5 2C6.16304 2 6.79893 2.26339 7.26777 2.73223C7.73661 3.20107 8 3.83696 8 4.5M8 4.5V11.5M8 4.5C8 3.83696 8.26339 3.20107 8.73223 2.73223C9.20107 2.26339 9.83696 2 10.5 2C11.163 2 11.7989 2.26339 12.2678 2.73223C12.7366 3.20107 13 3.83696 13 4.5V5.41875C13.6692 5.65322 14.2338 6.11716 14.5935 6.72828C14.9532 7.3394 15.0847 8.05817 14.9649 8.75708C14.845 9.45599 14.4815 10.0898 13.9387 10.5462C13.396 11.0026 12.7091 11.2519 12 11.25H11.5M5.5 5.25V5.75C5.5 6.21413 5.31563 6.65925 4.98744 6.98744C4.65925 7.31563 4.21413 7.5 3.75 7.5M10.5 5.25V5.75C10.5 6.21413 10.6844 6.65925 11.0126 6.98744C11.3408 7.31563 11.7859 7.5 12.25 7.5" />
-                                                    </svg>
-                                                    <span class="section-title">意图识别</span>
-                                                    <span class="section-count">(已配置3个问法)</span>
-                                                </div>
-                                                <button class="section-delete-btn" title="删除整个意图识别">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 16 16">
-                                                        <path stroke="currentColor" d="M9.5 7V11M6 2.5H10M2 4.5H14M12.5 4.5V13.5H3.5V4.5M6.5 7V11" />
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                            <div class="section-content">
-                                                <!-- 意图名称输入 -->
-                                                <div class="intent-name-field">
-                                                    <label class="field-label">意图名称</label>
-                                                    <div class="intent-name-input-wrapper">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 16 16" class="field-icon">
-                                                            <path stroke="currentColor" d="M8 11V5M5.5 9C5.99445 9 6.4778 9.14662 6.88893 9.42133C7.30005 9.69603 7.62048 10.0865 7.8097 10.5433C7.99892 11.0001 8.04843 11.5028 7.95196 11.9877C7.8555 12.4727 7.6174 12.9181 7.26777 13.2678C6.91814 13.6174 6.47268 13.8555 5.98773 13.952C5.50277 14.0484 5.00011 13.9989 4.54329 13.8097C4.08648 13.6205 3.69603 13.3 3.42133 12.8889C3.14662 12.4778 3 11.9945 3 11.5V11.0813M10.5 9C10.0055 9 9.5222 9.14662 9.11108 9.42133C8.69995 9.69603 8.37952 10.0865 8.1903 10.5433C8.00108 11.0001 7.95157 11.5028 8.04804 11.9877C8.1445 12.4727 8.3826 12.9181 8.73223 13.2678C9.08187 13.6174 9.52732 13.8555 10.0123 13.952C10.4972 14.0484 10.9999 13.9989 11.4567 13.8097C11.9135 13.6205 12.304 13.3 12.5787 12.8889C12.8534 12.4778 13 11.9945 13 11.5V11.0813M4.5 11.25H4C3.29089 11.2519 2.60403 11.0026 2.06128 10.5462C1.51852 10.0898 1.15497 9.45599 1.03511 8.75708C0.915257 8.05817 1.04685 7.3394 1.40654 6.72828C1.76623 6.11716 2.33077 5.65322 3 5.41875V4.5C3 3.83696 3.26339 3.20107 3.73223 2.73223C4.20107 2.26339 4.83696 2 5.5 2C6.16304 2 6.79893 2.26339 7.26777 2.73223C7.73661 3.20107 8 3.83696 8 4.5M8 4.5V11.5M8 4.5C8 3.83696 8.26339 3.20107 8.73223 2.73223C9.20107 2.26339 9.83696 2 10.5 2C11.163 2 11.7989 2.26339 12.2678 2.73223C12.7366 3.20107 13 3.83696 13 4.5V5.41875C13.6692 5.65322 14.2338 6.11716 14.5935 6.72828C14.9532 7.3394 15.0847 8.05817 14.9649 8.75708C14.845 9.45599 14.4815 10.0898 13.9387 10.5462C13.396 11.0026 12.7091 11.2519 12 11.25H11.5M5.5 5.25V5.75C5.5 6.21413 5.31563 6.65925 4.98744 6.98744C4.65925 7.31563 4.21413 7.5 3.75 7.5M10.5 5.25V5.75C10.5 6.21413 10.6844 6.65925 11.0126 6.98744C11.3408 7.31563 11.7859 7.5 12.25 7.5" />
-                                                        </svg>
-                                                        <input type="text" class="intent-name-input" placeholder="如：退款处理、售后咨询等" value="退款处理">
-                                                    </div>
-                                                </div>
-                                                
-                                                <!-- 用户问法列表 -->
-                                                <div class="user-questions-field">
-                                                    <label class="field-label" style="display: none;">用户问法<span class="field-optional">（可选）</span></label>
-                                                    <div class="user-questions-list">
-                                                        <!-- 初始为空，用户可按需添加 -->
-                                                    </div>
-                                                    <button class="add-question-btn add-question-btn-empty">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 16 16">
-                                                            <path stroke="currentColor" d="M3 8H13M8 3V13" />
-                                                        </svg>
-                                                        <div class="btn-content">
-                                                            <span class="btn-title">用户问法<span class="field-optional">（可选）</span></span>
-                                                            <span class="btn-hint">点击添加用户可能的提问方式</span>
-                                                        </div>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <!-- "或"分隔符 -->
-                                        <div class="or-divider" style="display: flex;">
-                                            <div class="or-line"></div>
-                                            <div class="or-badge">
-                                                <span class="or-text">任一即可</span>
-                                            </div>
-                                            <div class="or-line"></div>
-                                        </div>
-                                        
-                                        <!-- 关键词识别区块 -->
-                                        <div class="keyword-section" style="display: block;">
-                                            <div class="section-header">
-                                                <div class="section-title-group">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 16 16" class="section-icon">
-                                                        <path stroke="currentColor" d="M8 2V14M2 8H14"/>
-                                                    </svg>
-                                                    <span class="section-title">关键词识别</span>
-                                                    <span class="section-count">(已配置1组)</span>
-                                                </div>
-                                                <button class="section-delete-btn" title="删除整个关键词识别">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 16 16">
-                                                        <path stroke="currentColor" d="M9.5 7V11M6 2.5H10M2 4.5H14M12.5 4.5V13.5H3.5V4.5M6.5 7V11" />
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                            <div class="section-content">
-                                                <!-- 条件组 -->
-                                        <div class="condition-group">
-                                            <div class="condition-box">
-                                                <div class="condition-row">
-                                                    <select class="condition-select">
-                                                        <option value="contains" selected>包含</option>
-                                                        <option value="not_contains">不包含</option>
-                                                    </select>
-                                                    <div class="keywords-input">
-                                                        <div class="keyword-tag">
-                                                                    <span>退货</span>
-                                                            <button class="remove-tag">×</button>
-                                                        </div>
-                                                        <input type="text" placeholder="" class="keyword-input">
-                                                    </div>
-                                                            <button class="delete-btn" title="删除条件">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 16 16">
-                                                            <path stroke="currentColor" d="M9.5 7V11M6 2.5H10M2 4.5H14M12.5 4.5V13.5H3.5V4.5M6.5 7V11" />
-                                                        </svg>
-                                                    </button>
-                                                        </div>
-                                                <button class="add-condition-btn">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 16 16">
-                                                        <path stroke="currentColor" d="M3 8H13M8 3V13" />
-                                                    </svg>
-                                                    并且
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <button class="add-group-btn">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 16 16">
-                                                <path stroke="currentColor" d="M3 8H13M8 3V13" />
-                                            </svg>
-                                            或者
-                                        </button>
-                                            </div>
-                                        </div>
-                                        
-                                        <!-- 添加识别方式按钮组（当对应区块被删除后显示） -->
-                                        <div class="add-section-buttons">
-                                            <button class="add-section-btn add-intent-section-btn" style="display: none;">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 16 16">
-                                                    <path stroke="currentColor" d="M3 8H13M8 3V13" />
-                                                </svg>
-                                                添加意图识别
-                                            </button>
-                                            <button class="add-section-btn add-keyword-section-btn" style="display: none;">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 16 16">
-                                                    <path stroke="currentColor" d="M3 8H13M8 3V13" />
-                                                </svg>
-                                                添加关键词识别
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <!-- 新增分支按钮 -->
-                                <div class="add-branch-section">
-                                    <button class="add-branch-btn">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 16 16">
+                                    <button class="add-branch-btn-empty">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
                                             <path stroke="currentColor" d="M3 8H13M8 3V13" />
                                         </svg>
                                         新增分支
                                     </button>
                                 </div>
                                 
-                                <!-- 兜底意图分支 -->
+                                <!-- 共享兜底分支 -->
                                 <div class="fallback-intent-section">
+                                    <!-- 开关部分 -->
                                     <div class="fallback-intent-toggle border rounded p-lg bg-01">
                                         <div class="text-sm flex items-center justify-between h-[22px]">
-                                            <div class="fallback-intent-title font-medium">兜底意图</div>
+                                            <div class="fallback-intent-title font-medium">共享兜底分支</div>
                                             <button type="button" role="switch" aria-checked="false" data-state="unchecked" value="on" id="fallbackIntentSwitch" class="peer inline-flex h-5 w-9 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input">
                                                 <span data-state="unchecked" class="pointer-events-none block h-4 w-4 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-4 data-[state=unchecked]:translate-x-0"></span>
                                             </button>
                                             <input aria-hidden="true" tabindex="-1" type="checkbox" value="on" class="fallback-intent-checkbox">
                                         </div>
                                     </div>
-                                    <div class="fallback-intent-branch" style="display: none;">
-                                        <div class="fallback-intent-branch_header">
-                                            <div class="branch-title-group">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 16 16" class="branch-icon">
-                                                    <path stroke="currentColor" d="M8 11V5M5.5 9C5.99445 9 6.4778 9.14662 6.88893 9.42133C7.30005 9.69603 7.62048 10.0865 7.8097 10.5433C7.99892 11.0001 8.04843 11.5028 7.95196 11.9877C7.8555 12.4727 7.6174 12.9181 7.26777 13.2678C6.91814 13.6174 6.47268 13.8555 5.98773 13.952C5.50277 14.0484 5.00011 13.9989 4.54329 13.8097C4.08648 13.6205 3.69603 13.3 3.42133 12.8889C3.14662 12.4778 3 11.9945 3 11.5V11.0813M10.5 9C10.0055 9 9.5222 9.14662 9.11108 9.42133C8.69995 9.69603 8.37952 10.0865 8.1903 10.5433C8.00108 11.0001 7.95157 11.5028 8.04804 11.9877C8.1445 12.4727 8.3826 12.9181 8.73223 13.2678C9.08187 13.6174 9.52732 13.8555 10.0123 13.952C10.4972 14.0484 10.9999 13.9989 11.4567 13.8097C11.9135 13.6205 12.304 13.3 12.5787 12.8889C12.8534 12.4778 13 11.9945 13 11.5V11.0813M4.5 11.25H4C3.29089 11.2519 2.60403 11.0026 2.06128 10.5462C1.51852 10.0898 1.15497 9.45599 1.03511 8.75708C0.915257 8.05817 1.04685 7.3394 1.40654 6.72828C1.76623 6.11716 2.33077 5.65322 3 5.41875V4.5C3 3.83696 3.26339 3.20107 3.73223 2.73223C4.20107 2.26339 4.83696 2 5.5 2C6.16304 2 6.79893 2.26339 7.26777 2.73223C7.73661 3.20107 8 3.83696 8 4.5M8 4.5V11.5M8 4.5C8 3.83696 8.26339 3.20107 8.73223 2.73223C9.20107 2.26339 9.83696 2 10.5 2C11.163 2 11.7989 2.26339 12.2678 2.73223C12.7366 3.20107 13 3.83696 13 4.5V5.41875C13.6692 5.65322 14.2338 6.11716 14.5935 6.72828C14.9532 7.3394 15.0847 8.05817 14.9649 8.75708C14.845 9.45599 14.4815 10.0898 13.9387 10.5462C13.396 11.0026 12.7091 11.2519 12 11.25H11.5M5.5 5.25V5.75C5.5 6.21413 5.31563 6.65925 4.98744 6.98744C4.65925 7.31563 4.21413 7.5 3.75 7.5M10.5 5.25V5.75C10.5 6.21413 10.6844 6.65925 11.0126 6.98744C11.3408 7.31563 11.7859 7.5 12.25 7.5" />
+                                    
+                                    <!-- 状态卡片（开启后显示）-->
+                                    <div class="fallback-status-card" style="display: none;">
+                                        <!-- 未配置状态 -->
+                                        <div class="status-card-empty" style="display: block;">
+                                            <div class="status-icon-warning">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
+                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M8 5.5V8.5M8 11H8.005M14 8C14 11.3137 11.3137 14 8 14C4.68629 14 2 11.3137 2 8C2 4.68629 4.68629 2 8 2C11.3137 2 14 4.68629 14 8Z"/>
                                                 </svg>
-                                                <div class="branch-title">以上意图均不匹配</div>
                                             </div>
-                                            <div class="default-badge">默认最后</div>
+                                            <div class="status-content">
+                                                <div class="status-title">尚未配置共享兜底分支</div>
+                                                <div class="status-hint">开启后需要配置至少一个分支才能生效</div>
+                                            </div>
+                                            <button class="config-btn config-btn-primary" id="openConfigModal">
+                                                <span>立即配置</span>
+                                            </button>
                                         </div>
-                                        <div class="fallback-intent-branch_body">
-                                            <div class="help-text">该意图为系统默认创建，当未满足其它意图分支时，均进入此分支</div>
+                                        
+                                        <!-- 已配置状态 -->
+                                        <div class="status-card-configured" style="display: none;">
+                                            <div class="status-icon-success">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
+                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M13 4.5L6 11.5L3 8.5"/>
+                                                </svg>
+                                            </div>
+                                            <div class="status-content">
+                                                <div class="status-info-row">
+                                                    <span class="status-title">已配置 <span class="branch-count">3</span> 个分支</span>
+                                                    <span class="status-time">最近编辑：2小时前</span>
+                                                </div>
+                                                <div class="status-branches">
+                                                    <span class="branch-preview">退款处理、物流查询、投诉建议</span>
+                                                </div>
+                                            </div>
+                                            <button class="config-btn config-btn-secondary" id="editConfigModal">
+                                                <span>配置共享分支</span>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -417,6 +293,39 @@
         </div>
     </div>
 </form>
+
+<!-- 共享兜底分支配置 Modal -->
+<div id="fallbackConfigModal" class="config-modal" style="display: none;">
+    <div class="config-modal-overlay"></div>
+    <div class="config-modal-container">
+        <div class="config-modal-header">
+            <h2 class="config-modal-title">配置共享兜底分支</h2>
+            <button class="config-modal-close" id="closeConfigModal">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 16 16">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M12 4L4 12M4 4L12 12"/>
+                </svg>
+            </button>
+        </div>
+        <div class="config-modal-body">
+            <div class="modal-help-text">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M8 5.5V8.5M8 11H8.005M14 8C14 11.3137 11.3137 14 8 14C4.68629 14 2 11.3137 2 8C2 4.68629 4.68629 2 8 2C11.3137 2 14 4.68629 14 8Z"/>
+                </svg>
+                <span>在所有「顾客反馈识别」节点间共享使用。匹配逻辑：① 优先判断当前节点分支 → ② 均未命中时判断共享兜底分支</span>
+            </div>
+            
+            <!-- 配置内容区域 - 与正常分支配置相同 -->
+            <div id="fallbackBranchesContainer" class="fallback-branches-container">
+                <!-- 分支将通过 JavaScript 动态添加 -->
+            </div>
+        </div>
+        <div class="config-modal-footer">
+            <button class="modal-btn modal-btn-cancel" id="cancelConfigModal">取消</button>
+            <button class="modal-btn modal-btn-save" id="saveConfigModal">保存配置</button>
+        </div>
+    </div>
+</div>
+
 </div>
 </div>
 <script src="script.js" defer></script>
