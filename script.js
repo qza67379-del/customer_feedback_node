@@ -756,6 +756,13 @@ document.addEventListener('DOMContentLoaded', function() {
             const btn = addQuestionBtn;
             const questionsList = btn.closest('.user-questions-field').querySelector('.user-questions-list');
             
+            // 检查当前问法数量，如果已经有5个则不允许添加
+            const currentCount = questionsList.querySelectorAll('.question-item').length;
+            if (currentCount >= 5) {
+                console.log('问法数量已达上限(5个)');
+                return;
+            }
+            
             // 创建新的问法项
             const newQuestion = document.createElement('div');
             newQuestion.className = 'question-item';
@@ -840,7 +847,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // 5.5 更新新增问法按钮状态（空状态 vs 正常状态）
+    // 5.5 更新新增问法按钮状态（空状态 vs 正常状态 vs 达到上限）
     function updateAddQuestionButtonState(btn) {
         if (!btn) return;
         
@@ -849,8 +856,14 @@ document.addEventListener('DOMContentLoaded', function() {
         const fieldLabel = questionsField.querySelector('.field-label');
         const count = questionsList.querySelectorAll('.question-item').length;
         
-        if (count === 0) {
+        // 检查是否达到上限（5个）
+        if (count >= 5) {
+            // 达到上限：隐藏按钮
+            btn.style.display = 'none';
+            console.log('问法已达上限，隐藏新增按钮');
+        } else if (count === 0) {
             // 切换到空状态：隐藏label，按钮显示完整信息
+            btn.style.display = 'inline-flex';
             if (fieldLabel) {
                 fieldLabel.style.display = 'none';
             }
@@ -866,6 +879,7 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
         } else {
             // 切换到正常状态：显示label，按钮变小
+            btn.style.display = 'inline-flex';
             if (fieldLabel) {
                 fieldLabel.style.display = 'block';
             }
@@ -1005,6 +1019,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <path stroke="currentColor" d="M2 13.5H14M3.77541 8.217L9.99241 2L12.1137 4.12132L5.89673 10.3383L3.32966 10.8936L3.77541 8.217Z" />
                         </svg>
                     </div>
+                    <div class="branch-priority-badge">优先级<span class="branch-priority-number">${branchNumber}</span></div>
                     <div class="branch-header-actions">
                         <button class="branch-delete-btn" title="删除分支">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
@@ -1161,6 +1176,9 @@ document.addEventListener('DOMContentLoaded', function() {
             keywordInputs.forEach(input => {
                 addKeywordInputEvents(input);
             });
+            
+            // 更新所有分支的优先级
+            updateBranchPriorities();
         }
     });
     
@@ -1729,7 +1747,27 @@ document.addEventListener('click', function(e) {
                     toggleAddBranchStyle(container, true);
                     console.log('所有分支已删除，切换为空状态样式');
                 }
+                
+                // 更新所有分支的优先级
+                updateBranchPriorities();
             }, 300);
         }
     }
 });
+
+// ==================== 更新所有分支的优先级编号 ====================
+function updateBranchPriorities() {
+    const container = document.querySelector('.message-recognition-container');
+    if (!container) return;
+    
+    const allBranches = container.querySelectorAll('.message-branch');
+    
+    allBranches.forEach((branch, index) => {
+        const priorityNumber = branch.querySelector('.branch-priority-number');
+        if (priorityNumber) {
+            priorityNumber.textContent = (index + 1).toString();
+        }
+    });
+    
+    console.log(`已更新${allBranches.length}个分支的优先级`);
+}

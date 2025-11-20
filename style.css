@@ -807,6 +807,26 @@ div:where(.css-la0689).ant-typography {
     opacity: 0.7;
 }
 
+/* 分支优先级徽章 */
+.branch-priority-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    padding: 2px 8px;
+    background: var(--background-02);
+    border: 1px solid var(--border-color-border);
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--font-02);
+    white-space: nowrap;
+}
+
+.branch-priority-number {
+    font-weight: 500;
+    color: var(--font-01);
+}
+
 /* 分支头部操作按钮组 */
 .branch-header-actions {
     display: flex;
@@ -1203,9 +1223,22 @@ div:where(.css-la0689).ant-typography {
 .message-branch_header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 12px;
     height: 30px;
     margin-bottom: 12px;
+}
+
+.message-branch_header .branch-title-group {
+    flex: 0 0 auto;
+}
+
+.message-branch_header .branch-priority-badge {
+    flex: 0 0 auto;
+}
+
+.message-branch_header .branch-header-actions {
+    flex: 0 0 auto;
+    margin-left: auto;
 }
 
 .message-branch_body {
@@ -1774,19 +1807,19 @@ div:where(.css-la0689).ant-typography {
 
 /* ==================== 兜底意图分支样式 ==================== */
 
-/* 兜底意图整体区域 */
-.fallback-intent-section {
+/* 兜底意图容器 - 整体包裹开关和配置区域 */
+.fallback-intent-container {
     margin-bottom: 16px;
+    transition: all 0.2s;
+}
+
+.fallback-intent-container:hover {
+    border-color: var(--neutral-400);
 }
 
 /* 兜底意图开关区域 */
 .fallback-intent-toggle {
     margin-bottom: 0;
-    transition: all 0.2s;
-}
-
-.fallback-intent-toggle:hover {
-    border-color: var(--neutral-400);
 }
 
 .fallback-intent-title {
@@ -1828,18 +1861,20 @@ div:where(.css-la0689).ant-typography {
 
 /* ==================== 共享兜底分支 - 状态卡片 ==================== */
 .fallback-status-card {
-    margin-top: 8px;
+    border-top: 1px solid var(--border-color-border);
+    padding: 16px;
+    background: var(--background-02);
     animation: fadeIn 0.3s ease;
 }
 
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(-8px);
+        max-height: 0;
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        max-height: 300px;
     }
 }
 
@@ -1848,32 +1883,30 @@ div:where(.css-la0689).ant-typography {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
-    padding: 24px 16px;
-    background: var(--background-01);
-    border: 1px solid var(--border-color-border);
-    border-radius: var(--border-radius-l);
+    gap: 16px;
+    padding: 32px 16px;
+    text-align: center;
 }
 
 .status-icon-warning {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: #FEF3C7;
-    color: #F59E0B;
+    width: 48px;
+    height: 48px;
 }
 
 .status-icon-warning svg {
-    width: 20px;
-    height: 20px;
-    stroke-width: 1.5;
+    width: 48px;
+    height: 48px;
 }
 
 .status-content {
     flex: 1;
+    text-align: center;
+}
+
+.status-content-center {
     text-align: center;
 }
 
@@ -1889,6 +1922,12 @@ div:where(.css-la0689).ant-typography {
     color: var(--font-03);
     line-height: 18px;
     margin-top: 4px;
+}
+
+.status-text {
+    font-size: 14px;
+    color: var(--font-02);
+    line-height: 20px;
 }
 
 /* 已配置状态卡片 */
@@ -1971,6 +2010,15 @@ div:where(.css-la0689).ant-typography {
 .config-btn-primary {
     background: var(--primary);
     color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.config-btn-primary svg {
+    width: 16px;
+    height: 16px;
+    stroke: currentColor;
 }
 
 .config-btn-primary:hover {
