@@ -502,182 +502,246 @@ div:where(.css-la0689).ant-typography {
     color: var(--font-03);
 }
 
-/* 标签包装器 - 自动扩展 */
-.behavior-tags-wrapper {
-    margin-bottom: 8px;
+/* 多选下拉框容器 */
+.behavior-multiselect-wrapper {
+    position: relative;
+    width: 100%;
 }
 
-/* 标签显示区域 */
-.behavior-tags-display {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    min-height: 24px;
-}
-
-.behavior-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 4px 8px;
-    background-color: var(--background-01);
-    border: 1px solid var(--border-color-border);
-    border-radius: 4px;
-    font-size: 12px;
-    color: var(--font-01);
-    flex-shrink: 0;
+/* 输入框样式的选择器 */
+.behavior-multiselect-box {
     box-sizing: border-box;
-}
-
-.behavior-tag-icon {
-    flex-shrink: 0;
     display: flex;
+    flex-direction: row;
     align-items: center;
+    padding: 0px 12px;
+    gap: 16px;
+    width: 100%;
+    min-height: 36px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #E2E2E2;
+    box-shadow: 0px 0.5px 0.5px 0.5px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
 }
 
-.behavior-tag-icon svg {
-    color: inherit;
+.behavior-multiselect-box:hover {
+    border-color: #C1C1C1;
 }
 
-.behavior-tag-text {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    min-width: 0;
+.behavior-multiselect-box.active {
+    border-color: #F32640;
+    box-shadow: 0px 0px 0px 2px rgba(243, 38, 64, 0.1);
+}
+
+/* 已选标签区域 */
+.behavior-selected-tags {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 8px;
     flex: 1;
+    min-width: 0;
+    flex-wrap: wrap;
+    padding: 8px 0;
 }
 
-.behavior-tag-remove {
-    display: inline-flex;
+/* 占位符文字 */
+.behavior-placeholder {
+    font-family: 'PingFang SC', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #ACACAC;
+}
+
+/* 已选标签样式 */
+.behavior-selected-tag {
+    display: flex;
+    flex-direction: row;
     align-items: center;
+    padding: 2px 8px;
+    gap: 4px;
+    height: 20px;
+    background: #F5F5F5;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.behavior-selected-tag-icon {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
     justify-content: center;
+    align-items: center;
+    padding: 0px;
+    width: 16px;
+    height: 16px;
+    background: #FFFFFF;
+    border: 0.666667px solid rgba(0, 0, 0, 0.1);
+    border-radius: 666px;
+    flex-shrink: 0;
+}
+
+.behavior-selected-tag-icon svg {
     width: 14px;
     height: 14px;
+}
+
+.behavior-selected-tag-text {
+    font-family: 'PingFang SC', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    color: #171717;
+    white-space: nowrap;
+}
+
+.behavior-selected-tag-close {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    width: 12px;
+    height: 12px;
     cursor: pointer;
     opacity: 0.6;
     transition: opacity 0.15s;
-}
-
-.behavior-tag-remove:hover {
-    opacity: 1;
-}
-
-.behavior-tag-more {
-    color: var(--font-03);
-    font-weight: 500;
-    cursor: pointer;
-}
-
-/* 下拉菜单样式 */
-.behavior-dropdown {
-    position: relative;
-    margin-top: 8px;
-    border-radius: 8px;
-    overflow: hidden;
-    max-height: 0;
-    opacity: 0;
-    transition: max-height 0.3s ease, opacity 0.3s ease;
-    z-index: 10;
-}
-
-.behavior-dropdown.show {
-    max-height: 300px;
-    opacity: 1;
-}
-
-.behavior-dropdown-content {
-    background-color: var(--background-base);
-    border: 1px solid var(--border-color-border);
-    border-radius: 8px;
-    padding: 8px;
-    position: relative;
-    z-index: 10;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.behavior-dropdown-tip {
-    padding: 8px 12px;
-    margin-bottom: 4px;
-    line-height: 1.6;
-    color: var(--font-03);
-}
-
-.behavior-options-list {
-    max-height: 250px;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-/* 行为选项项 */
-.behavior-option-item {
-    position: relative;
-    display: flex;
-    align-items: center;
-    padding: 10px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.15s;
-    background-color: var(--background-base);
-}
-
-.behavior-option-item:hover {
-    background-color: var(--background-hoverBG);
-}
-
-.behavior-checkbox {
-    position: absolute;
-    opacity: 0;
-    pointer-events: none;
-}
-
-.behavior-checkbox:checked + .behavior-option-label {
-    font-weight: 500;
-    color: var(--primary);
-}
-
-.behavior-checkbox:checked ~ .behavior-checkmark {
-    background-color: var(--primary);
-    border-color: var(--primary);
-}
-
-.behavior-option-label {
-    flex: 1;
-    font-size: 14px;
-    color: var(--font-01);
-    user-select: none;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.behavior-icon {
     flex-shrink: 0;
 }
 
-.behavior-checkmark {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 18px;
-    height: 18px;
-    border: 2px solid var(--border-color-border);
-    border-radius: 4px;
-    background-color: transparent;
-    transition: all 0.15s;
-    flex-shrink: 0;
+.behavior-selected-tag-close:hover {
+    opacity: 1;
 }
 
-.behavior-checkmark svg {
-    display: none;
-    color: white;
+.behavior-selected-tag-close svg {
     width: 12px;
     height: 12px;
 }
 
-.behavior-checkbox:checked ~ .behavior-checkmark svg {
-    display: block;
+/* 下拉箭头 */
+.behavior-dropdown-arrow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    transition: transform 0.2s;
+}
+
+.behavior-multiselect-box.active .behavior-dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+/* 下拉列表 */
+.behavior-dropdown-list {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px;
+    gap: 4px;
+    position: absolute;
+    width: 180px;
+    max-height: 200px;
+    overflow-y: auto;
+    background: #FFFFFF;
+    border: 1px solid #E1E4EA;
+    box-shadow: 0px 20px 25px -5px rgba(0, 0, 0, 0.1), 0px 10px 10px -5px rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    z-index: 100;
+    margin-top: 4px;
+    animation: dropdownFadeIn 0.2s ease;
+}
+
+@keyframes dropdownFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 下拉列表项 */
+.behavior-dropdown-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 4px 8px;
+    gap: 8px;
+    width: 100%;
+    min-height: 32px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.15s;
+    box-sizing: border-box;
+}
+
+.behavior-dropdown-item:hover {
+    background: rgba(183, 184, 189, 0.1);
+}
+
+.behavior-dropdown-item.selected {
+    background: rgba(183, 184, 189, 0.2);
+    box-shadow: inset 0px -1px 0px rgba(183, 184, 189, 0.15);
+}
+
+.behavior-dropdown-item.selected .behavior-item-text {
+    color: #F32640;
+}
+
+.behavior-dropdown-item.selected .behavior-item-check {
+    display: block !important;
+}
+
+/* 下拉列表项图标 */
+.behavior-item-icon {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    width: 24px;
+    height: 24px;
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 999px;
+    flex-shrink: 0;
+}
+
+.behavior-item-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* 下拉列表项文字 */
+.behavior-item-text {
+    font-family: 'PingFang SC', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    color: #3D3D3D;
+    flex: 1;
+}
+
+/* 下拉列表项选中图标 */
+.behavior-item-check {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
 }
 
 .hover\:opacity-90:hover {

@@ -202,163 +202,178 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('顾客反馈识别配置面板已加载完成');
 
     // ==================== 行为识别模块功能 ====================
-    const behaviorConfigBtn = document.querySelector('.behavior-config-btn');
-    const behaviorDropdown = document.getElementById('behaviorDropdown');
-    const behaviorTagsDisplay = document.getElementById('behaviorTagsDisplay');
-    const behaviorCheckboxes = document.querySelectorAll('.behavior-checkbox');
+    const behaviorMultiselectBox = document.getElementById('behaviorMultiselectBox');
+    const behaviorDropdownList = document.getElementById('behaviorDropdownList');
+    const behaviorSelectedTags = document.getElementById('behaviorSelectedTags');
+    const behaviorDropdownItems = document.querySelectorAll('.behavior-dropdown-item');
     
-    // 存储当前选中的行为（初始化5个示例标签用于测试）
-    let selectedBehaviors = ['card_click', 'link_click', 'button_click', 'image_view', 'file_download'];
-    let isDropdownOpen = false;
+    // 存储当前选中的行为数据
+    let selectedBehaviorsData = [];
+    let isBehaviorDropdownOpen = false;
     
-    // 切换下拉菜单
+    // 切换下拉列表
     function toggleBehaviorDropdown() {
-        isDropdownOpen = !isDropdownOpen;
-        if (isDropdownOpen) {
-            behaviorDropdown.style.display = 'block';
-            // 恢复之前的选择状态
-            behaviorCheckboxes.forEach(checkbox => {
-                checkbox.checked = selectedBehaviors.includes(checkbox.value);
-            });
-            setTimeout(() => {
-                behaviorDropdown.classList.add('show');
-                // 更新手风琴高度
-                setTimeout(() => updateAccordionHeight('等待回复'), 100);
-            }, 10);
+        isBehaviorDropdownOpen = !isBehaviorDropdownOpen;
+        
+        if (isBehaviorDropdownOpen) {
+            behaviorDropdownList.style.display = 'flex';
+            behaviorMultiselectBox.classList.add('active');
         } else {
-            behaviorDropdown.classList.remove('show');
-            setTimeout(() => {
-                behaviorDropdown.style.display = 'none';
-                // 更新手风琴高度
-                updateAccordionHeight('等待回复');
-            }, 300);
+            behaviorDropdownList.style.display = 'none';
+            behaviorMultiselectBox.classList.remove('active');
         }
+        
+            // 更新手风琴高度
+        setTimeout(() => updateAccordionHeight('等待回复'), 50);
     }
     
-    // 更新标签显示
-    function updateBehaviorTags() {
-        behaviorTagsDisplay.innerHTML = '';
+    // 更新选中标签显示
+    function updateBehaviorSelectedTags() {
+        behaviorSelectedTags.innerHTML = '';
         
-        if (selectedBehaviors.length === 0) {
-            const emptyTip = document.createElement('div');
-            emptyTip.className = 'text-helper text-sm';
-            emptyTip.textContent = '暂未配置行为';
-            behaviorTagsDisplay.appendChild(emptyTip);
-            // 更新手风琴高度
-            setTimeout(() => updateAccordionHeight('等待回复'), 10);
-            return;
-        }
-        
-        // 显示所有标签
-        selectedBehaviors.forEach(behaviorValue => {
-            const checkbox = document.querySelector(`.behavior-checkbox[value="${behaviorValue}"]`);
-            if (!checkbox) return;
-            
-            const label = checkbox.getAttribute('data-label');
-            const iconSvg = checkbox.getAttribute('data-icon');
-            const iconColor = checkbox.getAttribute('data-color');
-            
+        if (selectedBehaviorsData.length === 0) {
+            // 显示占位符
+            const placeholder = document.createElement('span');
+            placeholder.className = 'behavior-placeholder';
+            placeholder.textContent = '请选择要识别的行为';
+            behaviorSelectedTags.appendChild(placeholder);
+        } else {
+            // 显示所有已选标签
+            selectedBehaviorsData.forEach(behavior => {
             const tag = document.createElement('div');
-            tag.className = 'behavior-tag';
-            
-            // 添加图标
-            if (iconSvg) {
-                const iconWrapper = document.createElement('span');
-                iconWrapper.className = 'behavior-tag-icon';
-                iconWrapper.innerHTML = iconSvg;
-                // 应用自定义颜色到SVG元素
-                if (iconColor) {
-                    iconWrapper.style.color = iconColor;
+                tag.className = 'behavior-selected-tag';
+                
+                // 图标 - 使用原始SVG图标
+                const iconWrapper = document.createElement('div');
+                iconWrapper.className = 'behavior-selected-tag-icon';
+                if (behavior.icon) {
+                    iconWrapper.innerHTML = behavior.icon;
+                    // 应用颜色到SVG
                     const svg = iconWrapper.querySelector('svg');
                     if (svg) {
-                        svg.style.color = iconColor;
+                        svg.style.color = behavior.color;
+                        // 更新stroke颜色
+                        svg.querySelectorAll('[stroke]').forEach(el => {
+                            if (el.getAttribute('stroke') === 'currentColor') {
+                                el.setAttribute('stroke', behavior.color);
+                            }
+                        });
+                        // 更新fill颜色
+                        svg.querySelectorAll('[fill]').forEach(el => {
+                            if (el.getAttribute('fill') === 'currentColor') {
+                                el.setAttribute('fill', behavior.color);
+                            }
+                        });
                     }
                 }
                 tag.appendChild(iconWrapper);
-            }
-            
-            // 添加文字
-            const tagText = document.createElement('span');
-            tagText.className = 'behavior-tag-text';
-            tagText.textContent = label;
-            tag.appendChild(tagText);
-            
-            // 添加删除按钮
-            const removeBtn = document.createElement('span');
-            removeBtn.className = 'behavior-tag-remove';
-            removeBtn.innerHTML = `
+                
+                // 文字
+                const text = document.createElement('span');
+                text.className = 'behavior-selected-tag-text';
+                text.textContent = behavior.label;
+                tag.appendChild(text);
+                
+                // 删除按钮
+                const closeBtn = document.createElement('div');
+                closeBtn.className = 'behavior-selected-tag-close';
+                closeBtn.innerHTML = `
                 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 16 16">
-                    <path stroke="currentColor" d="M4.5 4.5L11.5 11.5M11.5 4.5L4.5 11.5" />
+                        <path stroke="#6E6E6E" stroke-width="1.5" d="M4.5 4.5L11.5 11.5M11.5 4.5L4.5 11.5"/>
                 </svg>
             `;
-            removeBtn.addEventListener('click', (e) => {
+                closeBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
-                removeBehavior(behaviorValue);
+                    toggleBehaviorSelection(behavior.value);
             });
+                tag.appendChild(closeBtn);
             
-            tag.appendChild(removeBtn);
-            behaviorTagsDisplay.appendChild(tag);
+                behaviorSelectedTags.appendChild(tag);
         });
+        }
         
-        // 更新手风琴高度（延迟一下确保DOM已更新）
+        // 更新手风琴高度
         setTimeout(() => updateAccordionHeight('等待回复'), 10);
     }
     
-    // 移除单个行为
-    function removeBehavior(behaviorValue) {
-        selectedBehaviors = selectedBehaviors.filter(v => v !== behaviorValue);
-        // 同时更新复选框状态
-        const checkbox = document.querySelector(`.behavior-checkbox[value="${behaviorValue}"]`);
-        if (checkbox) {
-            checkbox.checked = false;
-        }
-        updateBehaviorTags();
+    // 更新下拉列表项的选中状态
+    function updateBehaviorDropdownItems() {
+        behaviorDropdownItems.forEach(item => {
+            const value = item.getAttribute('data-value');
+            const isSelected = selectedBehaviorsData.some(b => b.value === value);
+            
+            if (isSelected) {
+                item.classList.add('selected');
+            } else {
+                item.classList.remove('selected');
+            }
+        });
     }
     
-    // 绑定事件
-    if (behaviorConfigBtn) {
-        behaviorConfigBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            console.log('点击了配置行为识别按钮');
+    // 切换选择状态
+    function toggleBehaviorSelection(value) {
+        const item = document.querySelector(`.behavior-dropdown-item[data-value="${value}"]`);
+        if (!item) return;
+        
+        const label = item.getAttribute('data-label');
+        const color = item.getAttribute('data-color');
+        const icon = item.getAttribute('data-icon');
+        
+        // 检查是否已选中
+        const existingIndex = selectedBehaviorsData.findIndex(b => b.value === value);
+        
+        if (existingIndex >= 0) {
+            // 已选中，移除
+            selectedBehaviorsData.splice(existingIndex, 1);
+    } else {
+            // 未选中，添加
+            selectedBehaviorsData.push({ value, label, color, icon });
+        }
+        
+        // 更新显示
+        updateBehaviorSelectedTags();
+        updateBehaviorDropdownItems();
+    }
+    
+    // 绑定输入框点击事件
+    if (behaviorMultiselectBox) {
+        behaviorMultiselectBox.addEventListener('click', function(e) {
+            e.stopPropagation();
             toggleBehaviorDropdown();
         });
-        console.log('配置按钮已绑定事件');
-    } else {
-        console.error('未找到配置按钮');
+        console.log('多选下拉框已绑定事件');
+            } else {
+        console.error('未找到多选下拉框元素');
     }
     
-    // 复选框变化时实时更新标签
-    behaviorCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', function() {
-            if (this.checked) {
-                if (!selectedBehaviors.includes(this.value)) {
-                    selectedBehaviors.push(this.value);
-                }
-            } else {
-                selectedBehaviors = selectedBehaviors.filter(v => v !== this.value);
-            }
-            updateBehaviorTags();
+    // 绑定下拉列表项点击事件
+    behaviorDropdownItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const value = this.getAttribute('data-value');
+            toggleBehaviorSelection(value);
         });
     });
     
-    // 点击外部关闭下拉菜单
+    // 点击外部关闭下拉列表
     document.addEventListener('click', function(e) {
-        if (isDropdownOpen && 
-            !behaviorConfigBtn.contains(e.target) && 
-            !behaviorDropdown.contains(e.target)) {
+        if (isBehaviorDropdownOpen && 
+            !behaviorMultiselectBox.contains(e.target) && 
+            !behaviorDropdownList.contains(e.target)) {
             toggleBehaviorDropdown();
         }
     });
     
     // 初始化显示
-    updateBehaviorTags();
+    updateBehaviorSelectedTags();
+    updateBehaviorDropdownItems();
     
     // 初始化后更新一次手风琴高度
     setTimeout(() => updateAccordionHeight('等待回复'), 100);
     
     console.log('行为识别模块已加载完成');
-    console.log('behaviorDropdown:', behaviorDropdown);
-    console.log('behaviorConfigBtn:', behaviorConfigBtn);
+    console.log('behaviorDropdownList:', behaviorDropdownList);
+    console.log('behaviorMultiselectBox:', behaviorMultiselectBox);
 
     // ==================== 关键词识别模块功能 ====================
     
